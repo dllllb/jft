@@ -2,6 +2,7 @@ package org.ext.container;
 
 import static org.ext.jft.container.Lists.arrayList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +42,15 @@ public class ListsTest {
 		control.add(3);
 		
 		assertEquals(control, list);
+	}
+	
+	@Test
+	public void getRandomValueTest() {
+		List<Integer> vals = arrayList(1, 2);
+		int res = Lists.getRandomValue(vals).get();
+		assertTrue(vals.contains(res));
+		
+		List<Integer> empty = arrayList();
+		assertTrue(Lists.getRandomValue(empty).isEmpty());
 	}
 }

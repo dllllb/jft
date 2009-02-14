@@ -114,6 +114,12 @@ public class Lists {
 
 		return toMap(list, separator);
 	}
+	
+	public static <T> Option<T> getRandomValue(List<T> list) {
+		int size = list.size();
+		int n = (int) Math.random() * size;
+		return n < size ? Option.<T> some(list.get(n)) : Option.<T> none();
+	}
 
 	private Lists() {
 		assert false;
