@@ -7,8 +7,4 @@ public class Arrays {
 	static public <T> T[] array(T... values) {
 		return values;
 	}
-
-	private Arrays() {
-		assert false;
-	}
 }

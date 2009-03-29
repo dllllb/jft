@@ -100,8 +100,4 @@ public class Maps {
 		
 		return res;
 	}
-
-	private Maps() {
-		assert false;
-	}
 }

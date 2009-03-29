@@ -38,8 +38,4 @@ public class Sets {
 		res.retainAll(right);
 		return res;
 	}
-
-	private Sets() {
-		assert false;
-	}
 }
