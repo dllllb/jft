@@ -120,8 +120,4 @@ public class Lists {
 		int n = (int) Math.random() * size;
 		return n < size ? Option.<T> some(list.get(n)) : Option.<T> none();
 	}
-
-	private Lists() {
-		assert false;
-	}
 }
