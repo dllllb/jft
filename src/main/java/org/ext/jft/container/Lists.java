@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -71,13 +72,25 @@ public class Lists {
 	static public <T> List<T> arrayList(T... values) {
 		return arrayList(Arrays.asList(values));
 	}
+	
+	static public <T> List<T> linkedList(T... values) {
+		return linkedList(Arrays.asList(values));
+	}
 
 	static public <T> List<T> arrayList(List<T> values) {
 		return new ArrayList<T>(values);
 	}
+	
+	static public <T> List<T> linkedList(List<T> values) {
+		return new LinkedList<T>(values);
+	}
 
 	public static <T> List<T> arrayList() {
 		return new ArrayList<T>();
+	}
+	
+	public static <T> List<T> linkedList() {
+		return new LinkedList<T>();
 	}
 
 	public static <T, B extends Comparable<Object>> List<T> sortBy(

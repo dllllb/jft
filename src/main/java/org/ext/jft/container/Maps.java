@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import org.ext.jft.function.Combiner;
@@ -79,6 +80,10 @@ public class Maps {
 
 	public static <K, V> Map<K, V> hashMap() {
 		return new HashMap<K, V>();
+	}
+	
+	public static <K, V> Map<K, V> treeMap() {
+		return new TreeMap<K, V>();
 	}
 
 	static public <Key, Value, To> List<To> map(Map<Key, Value> map,
