@@ -1,4 +1,4 @@
-package org.ext.container;
+package org.ext.jft.container;
 
 import static org.ext.jft.container.Lists.arrayList;
 import static org.junit.Assert.assertEquals;
