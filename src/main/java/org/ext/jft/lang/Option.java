@@ -6,9 +6,9 @@ import java.util.NoSuchElementException;
 import org.ext.jft.function.Factory;
 
 /**
- * Option represents empty or one-element list
- * This class is similar to Scala Option class
- * See http://www.scala-lang.org/docu/files/api/scala/Option.html
+ * Option represents empty or one-element list.
+ * This class is similar to Scala Option class.
+ * @see <a href="http://www.scala-lang.org/docu/files/api/scala/Option.html">Scala Option class documentation</a>
  * @author Dmitri Babaev
  */
 public abstract class Option<T> implements Iterable<T> {
@@ -26,13 +26,13 @@ public abstract class Option<T> implements Iterable<T> {
 
 	/**
 	 * Extract contained value from option container
-	 * @return Contained object or none if empty
+	 * @return Contained object or {@code null} if empty
 	 */
 	public abstract T get();
 
 	private static final class None<T> extends Option<T> {
 		@SuppressWarnings("unchecked")
-		public static final None NONE = new None();
+		private static final None NONE = new None();
 
 		public <E extends Throwable> T getOrThrow(E e) throws E {
 			throw e;
