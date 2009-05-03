@@ -66,4 +66,13 @@ public abstract class Mapper<From, To> implements
 			}
 		};
 	}
+	
+	public static <From> Mapper<From, Class<From>> toClassM() {
+		return new Mapper<From, Class<From>>() {
+			@SuppressWarnings("unchecked")
+			public Class<From> map(From from) {
+				return (Class<From>) from.getClass();
+			}
+		};
+	}
 }
