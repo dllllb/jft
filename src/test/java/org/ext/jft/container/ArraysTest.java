@@ -12,8 +12,6 @@ public class ArraysTest {
 
 	@Test
 	public void arrayTest() {
-		Integer[] arr = array(1, 2, 3);
-		Integer[] control = {1, 2, 3};
-		assertArrayEquals(control, arr);
+		assertArrayEquals(new Integer[] {1, 2, 3}, array(1, 2, 3));
 	}
 }

@@ -1,7 +1,7 @@
 package org.ext.jft.container;
 
 import static org.ext.jft.container.Lists.arrayList;
-import static org.junit.Assert.assertEquals;
+import static org.ext.jft.test.Asserts.assertCollectionEquals;
 
 import java.util.List;
 
@@ -12,14 +12,10 @@ public class IterableIteratorTest {
 
 	@Test
 	public void testIterableIterator() {
-		List<Integer> list = arrayList(1, 2, 3);
+		List<Integer> expected = arrayList(1, 2, 3);
+		List<Integer> actual = arrayList(new IterableIterator<Integer>(expected.iterator()));
 		
-		int sum = 0;
-		for (Integer val : new IterableIterator<Integer>(list.iterator())) {
-			sum += val;
-		}
-		
-		assertEquals(6, sum);
+		assertCollectionEquals(expected, actual);
 	}
 
 }
