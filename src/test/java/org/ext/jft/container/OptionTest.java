@@ -15,7 +15,7 @@ public class OptionTest {
 		for (Integer val : full) {
 			assertEquals(Integer.valueOf(10), val);
 			if (iterations > 0)
-				throw new AssertionError("more than one value inside Option");
+				fail("more than one value inside Option");
 			
 			iterations++;
 		}

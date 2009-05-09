@@ -4,6 +4,7 @@ import static org.ext.jft.container.CollectionsF.*;
 import static org.ext.jft.container.Lists.*;
 import static org.ext.jft.container.Range.*;
 import static org.junit.Assert.*;
+import static org.ext.jft.test.Asserts.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +38,9 @@ public class ListFTest {
 	}
 	
 	@Test
-	public void asList() {
+	public void asCollection() {
 		ListF<Integer> list = decorate(arrayList(range(10)));
 		List<Integer> expected = new ArrayList<Integer>(list);
-		assertEquals(expected, list);
+		assertCollectionEquals(expected, list);
 	}
 }

@@ -2,12 +2,12 @@ package org.ext.jft.container;
 
 import static org.ext.jft.container.Arrays.array;
 import static org.ext.jft.container.Maps.hashMap;
+import static org.ext.jft.test.Asserts.assertMapEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.ext.jft.container.Maps;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,6 +44,6 @@ public class MapsTest {
 		control.put(1, "a");
 		control.put(2, "b");
 		
-		assertEquals(control, map);
+		assertMapEquals(control, map);
 	}
 }
