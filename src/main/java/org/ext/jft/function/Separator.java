@@ -1,6 +1,6 @@
 package org.ext.jft.function;
 
-import org.ext.jft.lang.Pair;
+import org.ext.jft.container.Pair;
 
 /**
  * @author Dmitri Babaev
