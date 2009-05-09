@@ -1,11 +1,11 @@
-package org.ext.jft.lang;
+package org.ext.jft.container;
 
 import static org.ext.jft.container.Lists.arrayList;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.ext.jft.lang.IterableIterator;
+import org.ext.jft.container.IterableIterator;
 import org.junit.Test;
 
 public class IterableIteratorTest {

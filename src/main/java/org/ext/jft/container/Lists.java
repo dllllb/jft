@@ -13,8 +13,6 @@ import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
 import org.ext.jft.function.Predicate;
 import org.ext.jft.function.Separator;
-import org.ext.jft.lang.Option;
-import org.ext.jft.lang.Pair;
 
 /**
  * List operations utility class
@@ -79,6 +77,13 @@ public class Lists {
 
 	static public <T> List<T> arrayList(List<T> values) {
 		return new ArrayList<T>(values);
+	}
+	
+	static public <T> List<T> arrayList(Iterable<T> iterable) {
+		List<T> list = Lists.arrayList();
+		for (T t : iterable)
+			list.add(t);
+		return list;
 	}
 	
 	static public <T> List<T> linkedList(List<T> values) {

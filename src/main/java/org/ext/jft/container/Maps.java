@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
-import org.ext.jft.lang.Option;
 
 /**
  * @author Dmitri Babaev

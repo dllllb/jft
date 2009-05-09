@@ -1,7 +1,8 @@
-package org.ext.jft.lang;
+package org.ext.jft.container;
 
 import static org.junit.Assert.*;
 
+import org.ext.jft.container.Option;
 import org.junit.Test;
 
 public class OptionTest {
