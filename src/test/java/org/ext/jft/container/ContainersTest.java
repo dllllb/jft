@@ -1,6 +1,6 @@
 package org.ext.jft.container;
 
-import static org.ext.jft.container.Arrays.array;
+import static org.ext.jft.container.Containers.array;
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * @author Dmitri Babaev
  */
-public class ArraysTest {
+public class ContainersTest {
 
 	@Test
 	public void arrayTest() {

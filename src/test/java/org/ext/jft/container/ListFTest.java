@@ -1,12 +1,13 @@
 package org.ext.jft.container;
 
-import static org.ext.jft.container.CollectionsF.*;
-import static org.ext.jft.container.Lists.*;
-import static org.ext.jft.container.Range.*;
-import static org.junit.Assert.*;
-import static org.ext.jft.test.Asserts.*;
+import static org.ext.jft.container.Containers.arrayList;
+import static org.ext.jft.container.Containers.decorate;
+import static org.ext.jft.container.Range.range;
+import static org.ext.jft.test.Asserts.assertSame;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.ext.jft.function.Combiner;
@@ -38,9 +39,27 @@ public class ListFTest {
 	}
 	
 	@Test
-	public void asCollection() {
-		ListF<Integer> list = decorate(arrayList(range(10)));
-		List<Integer> expected = new ArrayList<Integer>(list);
-		assertCollectionEquals(expected, list);
+	public void map() {
+		List<String> res = arrayList(1, 2).map(Mapper.<Integer>toStringM());
+		assertSame(arrayList("1", "2"), res);
+	}
+
+	@Test
+	public void filter() {
+		List<Integer> res = arrayList(null, 1, 2).filter(Predicate.<Integer> notNullP());
+		assertSame(arrayList(1, 2), res);
+	}
+	
+	@Test
+	public void newArrayList() {
+		assertSame(Arrays.asList(1, 2, 3), arrayList(1, 2, 3));
+	}
+	
+	@Test
+	public void getRandomValueTest() {
+		ListF<Integer> vals = arrayList(1, 2);
+		
+		assertTrue(vals.contains(vals.getRandomValue().get()));
+		assertTrue(arrayList().getRandomValue().isEmpty());
 	}
 }
