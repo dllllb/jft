@@ -1,38 +1,19 @@
-package org.ext.jft.container;
+package org.ext.jft.container.impl;
+
+import static org.ext.jft.container.Containers.decorate;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.ext.jft.function.Combiner;
-import org.ext.jft.function.Mapper;
-import org.ext.jft.function.Predicate;
+import org.ext.jft.container.IteratorF;
+import org.ext.jft.container.ListF;
 
-/**
- * @author Dmitri Babaev
- */
-public class DecoratedList<E> implements ListF<E> {
+public class DecoratedListF<E> extends AbstractListF<E> {
 	private List<E> list;
 	
-	static public <T> ListF<T> decorate(List<T> list) {
-		return new DecoratedList<T>(list);
-	}
-
-	private DecoratedList(List<E> list) {
+	public DecoratedListF(List<E> list) {
 		this.list = list;
-	}
-	
-	public <To> ListF<To> map(Mapper<E, To> mapper) {
-		return decorate(Lists.map(list, mapper));
-	}
-	
-	public ListF<E> filter(Predicate<E> predicate) {
-		return decorate(Lists.filter(list, predicate));
-	}
-	
-	public E reduce(Combiner<E, E, E> combiner, E initial) {
-		return Lists.reduce(list, combiner, initial);
 	}
 
 	public void add(int index, E element) {
@@ -85,8 +66,8 @@ public class DecoratedList<E> implements ListF<E> {
 		return list.isEmpty();
 	}
 
-	public Iterator<E> iterator() {
-		return list.iterator();
+	public IteratorF<E> iterator() {
+		return decorate(list.iterator());
 	}
 
 	public int lastIndexOf(Object o) {
@@ -125,8 +106,8 @@ public class DecoratedList<E> implements ListF<E> {
 		return list.size();
 	}
 
-	public List<E> subList(int fromIndex, int toIndex) {
-		return list.subList(fromIndex, toIndex);
+	public ListF<E> subList(int fromIndex, int toIndex) {
+		return decorate(list.subList(fromIndex, toIndex));
 	}
 
 	public Object[] toArray() {
@@ -136,7 +117,7 @@ public class DecoratedList<E> implements ListF<E> {
 	public <T> T[] toArray(T[] a) {
 		return list.toArray(a);
 	}
-	
+
 	@Override
 	public String toString() {
 		return list.toString();

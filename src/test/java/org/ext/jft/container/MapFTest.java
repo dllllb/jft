@@ -1,8 +1,8 @@
 package org.ext.jft.container;
 
-import static org.ext.jft.container.Arrays.array;
-import static org.ext.jft.container.Maps.hashMap;
-import static org.ext.jft.test.Asserts.assertMapEquals;
+import static org.ext.jft.container.Containers.array;
+import static org.ext.jft.container.Containers.hashMap;
+import static org.ext.jft.test.Asserts.assertSame;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
@@ -14,11 +14,11 @@ import org.junit.Test;
 /**
  * @author Dmitri Babaev
  */
-public class MapsTest {
-	private final Map<Integer, String> map = hashMap();
-	private static final int key = 1;
-	private static final int notKey = 2;
-	private static final String data = "test";
+public class MapFTest {
+	private final MapF<Integer, String> map = hashMap();
+	private final int key = 1;
+	private final int notKey = 2;
+	private final String data = "test";
 
 	@Before
 	public void setUp() {
@@ -27,13 +27,12 @@ public class MapsTest {
 
 	@Test
 	public void getOrThrowTest() {
-		String res = Maps.getOrThrow(map, key, new RuntimeException("no key"));
-		assertEquals(data, res);
+		assertEquals(data, map.getOrThrow(key, new RuntimeException("no key")));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void getOrThrowExceptionTest() {
-		Maps.getOrThrow(map, notKey, new RuntimeException("no key"));
+		map.getOrThrow(notKey, new RuntimeException("no key"));
 	}
 	
 	@Test
@@ -44,6 +43,6 @@ public class MapsTest {
 		control.put(1, "a");
 		control.put(2, "b");
 		
-		assertMapEquals(control, map);
+		assertSame(control, map);
 	}
 }
