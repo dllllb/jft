@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.ext.jft.container.impl.DecoratedCollectionF;
 import org.ext.jft.container.impl.DecoratedIteratorF;
 import org.ext.jft.container.impl.DecoratedListF;
 import org.ext.jft.container.impl.DecoratedMapF;
@@ -35,6 +36,10 @@ public class Containers {
 	
 	public static <E> SetF<E> decorate(Set<E> set) {
 		return new DecoratedSetF<E>(set);
+	}
+	
+	public static <E> CollectionF<E> decorate(Collection<E> set) {
+		return new DecoratedCollectionF<E>(set);
 	}
 	
 	static public <T> ListF<T> arrayList(T... values) {

@@ -25,4 +25,10 @@ public interface MapF<K, V> extends Map<K, V> {
 	V getOrElseUpdate(K key, Mapper<K, V> factory);
 	
 	<To> ListF<To> map(Combiner<K, V, To> combiner);
+	
+	SetF<K> keySet();
+	
+	CollectionF<V> values();
+	
+	SetF<Entry<K, V>> entrySet();
 }

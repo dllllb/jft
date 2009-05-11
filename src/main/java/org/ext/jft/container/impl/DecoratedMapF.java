@@ -1,8 +1,11 @@
 package org.ext.jft.container.impl;
 
-import java.util.Collection;
+import static org.ext.jft.container.Containers.decorate;
+
 import java.util.Map;
-import java.util.Set;
+
+import org.ext.jft.container.CollectionF;
+import org.ext.jft.container.SetF;
 
 /**
  * @author Dmitri Babaev
@@ -26,8 +29,8 @@ public class DecoratedMapF<K, V> extends AbstractMapF<K, V> {
 		return map.containsValue(value);
 	}
 
-	public Set<java.util.Map.Entry<K, V>> entrySet() {
-		return map.entrySet();
+	public SetF<Entry<K, V>> entrySet() {
+		return decorate(map.entrySet());
 	}
 
 	@Override
@@ -48,8 +51,8 @@ public class DecoratedMapF<K, V> extends AbstractMapF<K, V> {
 		return map.isEmpty();
 	}
 
-	public Set<K> keySet() {
-		return map.keySet();
+	public SetF<K> keySet() {
+		return decorate(map.keySet());
 	}
 
 	public V put(K key, V value) {
@@ -68,8 +71,8 @@ public class DecoratedMapF<K, V> extends AbstractMapF<K, V> {
 		return map.size();
 	}
 
-	public Collection<V> values() {
-		return map.values();
+	public CollectionF<V> values() {
+		return decorate(map.values());
 	}
 	
 	@Override

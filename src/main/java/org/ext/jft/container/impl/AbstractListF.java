@@ -15,6 +15,7 @@ import org.ext.jft.function.Predicate;
  */
 public abstract class AbstractListF<E> extends AbstractCollectionF<E> implements ListF<E> {
 
+	@Override
 	public <To> ListF<To> map(Mapper<E, To> mapper) {
 		ListF<To> res = arrayList();
 
@@ -24,6 +25,7 @@ public abstract class AbstractListF<E> extends AbstractCollectionF<E> implements
 		return res;
 	}
 	
+	@Override
 	public ListF<E> filter(Predicate<E> predicate) {
 		ListF<E> res = arrayList();
 

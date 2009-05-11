@@ -24,7 +24,5 @@ public interface ListF<E> extends List<E>, CollectionF<E> {
 	 
 	Option<E> getRandomValue();
 	
-	IteratorF<E> iterator();
-	
 	ListF<E> subList(int fromIndex, int toIndex);
 }
