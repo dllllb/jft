@@ -27,6 +27,6 @@ public class DecoratedIteratorF<E> implements IteratorF<E> {
 	}
 	
 	public IteratorF<E> iterator() {
-		return new DecoratedIteratorF<E>(it);
+		return this;
 	}
 }

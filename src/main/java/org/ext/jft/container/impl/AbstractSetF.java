@@ -19,6 +19,7 @@ public abstract class AbstractSetF<E> extends AbstractCollectionF<E> implements 
 		return res;
 	}
 
+	@Override
 	public SetF<E> filter(Predicate<E> predicate) {
 		SetF<E> res = hashSet();
 
@@ -35,6 +36,7 @@ public abstract class AbstractSetF<E> extends AbstractCollectionF<E> implements 
 		return res;
 	}
 
+	@Override
 	public <To> SetF<To> map(Mapper<E, To> mapper) {
 		SetF<To> res = hashSet();
 

@@ -23,4 +23,6 @@ public interface CollectionF<E> extends Collection<E> {
 	<MapKey, MapValue> MapF<MapKey, MapValue> toMap(Separator<E, MapKey, MapValue> separator);
 
 	<Key> MapF<Key, E> toMapMappingToKey(Mapper<E, Key> mapper);
+	
+	IteratorF<E> iterator();
 }

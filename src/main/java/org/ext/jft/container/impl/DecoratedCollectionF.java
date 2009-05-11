@@ -3,84 +3,80 @@ package org.ext.jft.container.impl;
 import static org.ext.jft.container.Containers.decorate;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.ext.jft.container.IteratorF;
 
-/**
- * @author Dmitri Babaev
- */
-public class DecoratedSetF<E> extends AbstractSetF<E> {
-	private Set<E> set;
+public class DecoratedCollectionF<E> extends AbstractCollectionF<E> {
+	private Collection<E> collection;
 	
-	public DecoratedSetF(Set<E> set) {
-		this.set = set;
+	public DecoratedCollectionF(Collection<E> collection) {
+		this.collection = collection;
 	}
-	
+
 	public boolean add(E e) {
-		return set.add(e);
+		return collection.add(e);
 	}
 
 	public boolean addAll(Collection<? extends E> c) {
-		return set.addAll(c);
+		return collection.addAll(c);
 	}
 
 	public void clear() {
-		set.clear();
+		collection.clear();
 	}
 
 	public boolean contains(Object o) {
-		return set.contains(o);
+		return collection.contains(o);
 	}
 
 	public boolean containsAll(Collection<?> c) {
-		return set.containsAll(c);
+		return collection.containsAll(c);
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		return set.equals(o);
+		return collection.equals(o);
 	}
 
 	@Override
 	public int hashCode() {
-		return set.hashCode();
+		return collection.hashCode();
 	}
 
 	public boolean isEmpty() {
-		return set.isEmpty();
+		return collection.isEmpty();
 	}
 
 	public IteratorF<E> iterator() {
-		return decorate(set.iterator());
+		return decorate(collection.iterator());
 	}
 
 	public boolean remove(Object o) {
-		return set.remove(o);
+		return collection.remove(o);
 	}
 
 	public boolean removeAll(Collection<?> c) {
-		return set.removeAll(c);
+		return collection.removeAll(c);
 	}
 
 	public boolean retainAll(Collection<?> c) {
-		return set.retainAll(c);
+		return collection.retainAll(c);
 	}
 
 	public int size() {
-		return set.size();
+		return collection.size();
 	}
 
 	public Object[] toArray() {
-		return set.toArray();
+		return collection.toArray();
 	}
 
 	public <T> T[] toArray(T[] a) {
-		return set.toArray(a);
+		return collection.toArray(a);
 	}
 	
 	@Override
 	public String toString() {
-		return set.toString();
+		return collection.toString();
 	}
 }
