@@ -1,5 +1,7 @@
 package org.ext.jft.container;
 
+import static org.ext.jft.container.Containers.decorate;
+
 import java.util.Iterator;
 
 /**
@@ -16,8 +18,8 @@ public class IntRange implements Iterable<Integer> {
 		this.step = step;
 	}
 
-	public Iterator<Integer> iterator() {
-		return new Iterator<Integer>() {
+	public IteratorF<Integer> iterator() {
+		return decorate(new Iterator<Integer>() {
 			private int pos = from;
 			
 			public boolean hasNext() {
@@ -33,6 +35,6 @@ public class IntRange implements Iterable<Integer> {
 			public void remove() {
 				throw new UnsupportedOperationException();
 			}
-		};
+		});
 	}
 }
