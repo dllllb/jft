@@ -11,76 +11,76 @@ import org.ext.jft.container.IteratorF;
  * @author Dmitri Babaev
  */
 public class DecoratedSetF<E> extends AbstractSetF<E> {
-	private Set<E> set;
+	private Set<E> inner;
 	
 	public DecoratedSetF(Set<E> set) {
-		this.set = set;
+		this.inner = set;
 	}
 	
 	public boolean add(E e) {
-		return set.add(e);
+		return inner.add(e);
 	}
 
 	public boolean addAll(Collection<? extends E> c) {
-		return set.addAll(c);
+		return inner.addAll(c);
 	}
 
 	public void clear() {
-		set.clear();
+		inner.clear();
 	}
 
 	public boolean contains(Object o) {
-		return set.contains(o);
+		return inner.contains(o);
 	}
 
 	public boolean containsAll(Collection<?> c) {
-		return set.containsAll(c);
+		return inner.containsAll(c);
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		return set.equals(o);
+		return inner.equals(o);
 	}
 
 	@Override
 	public int hashCode() {
-		return set.hashCode();
+		return inner.hashCode();
 	}
 
 	public boolean isEmpty() {
-		return set.isEmpty();
+		return inner.isEmpty();
 	}
 
 	public IteratorF<E> iterator() {
-		return decorate(set.iterator());
+		return decorate(inner.iterator());
 	}
 
 	public boolean remove(Object o) {
-		return set.remove(o);
+		return inner.remove(o);
 	}
 
 	public boolean removeAll(Collection<?> c) {
-		return set.removeAll(c);
+		return inner.removeAll(c);
 	}
 
 	public boolean retainAll(Collection<?> c) {
-		return set.retainAll(c);
+		return inner.retainAll(c);
 	}
 
 	public int size() {
-		return set.size();
+		return inner.size();
 	}
 
 	public Object[] toArray() {
-		return set.toArray();
+		return inner.toArray();
 	}
 
 	public <T> T[] toArray(T[] a) {
-		return set.toArray(a);
+		return inner.toArray(a);
 	}
 	
 	@Override
 	public String toString() {
-		return set.toString();
+		return inner.toString();
 	}
 }

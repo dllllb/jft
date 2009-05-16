@@ -7,76 +7,76 @@ import java.util.Collection;
 import org.ext.jft.container.IteratorF;
 
 public class DecoratedCollectionF<E> extends AbstractCollectionF<E> {
-	private Collection<E> collection;
+	private Collection<E> inner;
 	
 	public DecoratedCollectionF(Collection<E> collection) {
-		this.collection = collection;
+		this.inner = collection;
 	}
 
 	public boolean add(E e) {
-		return collection.add(e);
+		return inner.add(e);
 	}
 
 	public boolean addAll(Collection<? extends E> c) {
-		return collection.addAll(c);
+		return inner.addAll(c);
 	}
 
 	public void clear() {
-		collection.clear();
+		inner.clear();
 	}
 
 	public boolean contains(Object o) {
-		return collection.contains(o);
+		return inner.contains(o);
 	}
 
 	public boolean containsAll(Collection<?> c) {
-		return collection.containsAll(c);
+		return inner.containsAll(c);
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		return collection.equals(o);
+		return inner.equals(o);
 	}
 
 	@Override
 	public int hashCode() {
-		return collection.hashCode();
+		return inner.hashCode();
 	}
 
 	public boolean isEmpty() {
-		return collection.isEmpty();
+		return inner.isEmpty();
 	}
 
 	public IteratorF<E> iterator() {
-		return decorate(collection.iterator());
+		return decorate(inner.iterator());
 	}
 
 	public boolean remove(Object o) {
-		return collection.remove(o);
+		return inner.remove(o);
 	}
 
 	public boolean removeAll(Collection<?> c) {
-		return collection.removeAll(c);
+		return inner.removeAll(c);
 	}
 
 	public boolean retainAll(Collection<?> c) {
-		return collection.retainAll(c);
+		return inner.retainAll(c);
 	}
 
 	public int size() {
-		return collection.size();
+		return inner.size();
 	}
 
 	public Object[] toArray() {
-		return collection.toArray();
+		return inner.toArray();
 	}
 
 	public <T> T[] toArray(T[] a) {
-		return collection.toArray(a);
+		return inner.toArray(a);
 	}
 	
 	@Override
 	public String toString() {
-		return collection.toString();
+		return inner.toString();
 	}
 }
