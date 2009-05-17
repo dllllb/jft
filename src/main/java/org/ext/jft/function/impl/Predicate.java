@@ -77,6 +77,22 @@ public abstract class Predicate<T> implements org.ext.jft.function.Predicate<T> 
 			}
 		};
 	}
+	
+	public static <T extends Comparable<T>> Predicate<T> moreThanP(final T standart) {
+		return new Predicate<T>() {
+			public boolean test(T val) {
+				return val.compareTo(standart) > 0;
+			}
+		};
+	}
+	
+	public static <T extends Comparable<T>> Predicate<T> lessThanP(final T standart) {
+		return new Predicate<T>() {
+			public boolean test(T val) {
+				return val.compareTo(standart) < 0;
+			}
+		};
+	}
 
 	public static <T> Predicate<T> instanceOfP(final Class<?> cl) {
 		return new Predicate<T>() {
