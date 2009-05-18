@@ -46,10 +46,6 @@ public abstract class Predicate<T> implements org.ext.jft.function.Predicate<T> 
 		};
 	}
 
-	public Predicate<T> nullIsFalseP() {
-		return Predicate.<T> notNullP().andP(this);
-	}
-
 	public Mapper<T, Boolean> asMapper() {
 		return new Mapper<T, Boolean>() {
 			public Boolean map(T a) {
