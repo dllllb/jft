@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.ext.jft.function.Combiner;
-import org.ext.jft.function.impl.Mapper;
-import org.ext.jft.function.impl.Mappers;
-import org.ext.jft.function.impl.Predicate;
-import org.ext.jft.function.impl.Predicates;
+import org.ext.jft.function.Mappers;
+import org.ext.jft.function.Predicates;
+import org.ext.jft.function.Mapper;
+import org.ext.jft.function.Predicate;
 import org.junit.Test;
 
 /**
