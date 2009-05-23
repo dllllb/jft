@@ -8,34 +8,12 @@ import java.util.Comparator;
 import org.ext.jft.container.ListF;
 import org.ext.jft.container.Option;
 import org.ext.jft.function.Mapper;
-import org.ext.jft.function.Predicate;
 
 /**
  * @author Dmitri Babaev
  */
 public abstract class AbstractListF<E> extends AbstractCollectionF<E> implements ListF<E> {
 
-	@Override
-	public <To> ListF<To> map(Mapper<E, To> mapper) {
-		ListF<To> res = arrayList();
-
-		for (E from : this) {
-			res.add(mapper.map(from));
-		}
-		return res;
-	}
-	
-	@Override
-	public ListF<E> filter(Predicate<E> predicate) {
-		ListF<E> res = arrayList();
-
-		for (E val : this) {
-			if (predicate.test(val))
-				res.add(val);
-		}
-		return res;
-	}
-	
 	public Option<E> getFront() {
 		return this.isEmpty() ? Option.<E>none() : Option.some(get(0));
 	}

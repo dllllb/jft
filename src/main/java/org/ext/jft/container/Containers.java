@@ -61,6 +61,13 @@ public class Containers {
 		return list;
 	}
 	
+	static public <T> ListF<T> linkedList(Iterable<T> iterable) {
+		ListF<T> list = linkedList();
+		for (T t : iterable)
+			list.add(t);
+		return list;
+	}
+	
 	static public <T> ListF<T> linkedList(List<T> values) {
 		return decorate(new LinkedList<T>(values));
 	}
@@ -75,6 +82,13 @@ public class Containers {
 	
 	public static <T> SetF<T> hashSet() {
 		return decorate(new HashSet<T>());
+	}
+	
+	static public <T> SetF<T> hashSet(Iterable<T> iterable) {
+		SetF<T> set = hashSet();
+		for (T t : iterable)
+			set.add(t);
+		return set;
 	}
 
 	public static <T> SetF<T> hashSet(T... values) {
