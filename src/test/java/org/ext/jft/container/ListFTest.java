@@ -23,7 +23,7 @@ import org.junit.Test;
 public class ListFTest {
 	@Test
 	public void mapFilterReduce() {
-		int res = decorate(arrayList(range(10))).map(new Mapper<Integer, Integer>(){
+		int res = decorate(arrayList(range(10))).map(new Mapper<Integer, Integer>() {
 			public Integer map(Integer from) {
 				return from + 1;
 			}
@@ -42,13 +42,19 @@ public class ListFTest {
 	
 	@Test
 	public void map() {
-		List<String> res = arrayList(1, 2).map(Mappers.<Integer>toStringM());
+		List<String> res = arrayList(1, 2)
+				.map(Mappers.<Integer>toStringM())
+				.toArrayList();
+		
 		assertSame(arrayList("1", "2"), res);
 	}
 
 	@Test
 	public void filter() {
-		List<Integer> res = arrayList(null, 1, 2).filter(Predicates.<Integer>notNullP());
+		List<Integer> res = arrayList(null, 1, 2)
+				.filter(Predicates.<Integer>notNullP())
+				.toArrayList();
+		
 		assertSame(arrayList(1, 2), res);
 	}
 	

@@ -12,9 +12,9 @@ import org.ext.jft.function.Separator;
  */
 public interface CollectionF<E> extends Collection<E> {
 	
-	<To> CollectionF<To> map(Mapper<E, To> mapper);
+	<To> Transformable<To> map(Mapper<E, To> mapper);
 
-	CollectionF<E> filter(Predicate<E> predicate);
+	Transformable<E> filter(Predicate<E> predicate);
 
 	E reduce(Combiner<E, E, E> combiner, E initial);
 	
