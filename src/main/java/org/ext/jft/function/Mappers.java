@@ -1,4 +1,4 @@
-package org.ext.jft.function.impl;
+package org.ext.jft.function;
 
 /**
  * @author Dmitri Babaev
