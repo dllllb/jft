@@ -43,36 +43,4 @@ public abstract class Mapper<From, To> implements
 			}
 		};
 	}
-
-	public Mapper<From, To> ignoreNullM() {
-		return new Mapper<From, To>() {
-			public To map(From a) {
-				if (a == null)
-					return null;
-				else
-					return Mapper.this.map(a);
-			}
-
-			public String toString() {
-				return String.format("ignoreNull(%s)", Mapper.this);
-			}
-		};
-	}
-
-	public static <From> Mapper<From, String> toStringM() {
-		return new Mapper<From, String>() {
-			public String map(From from) {
-				return from.toString();
-			}
-		};
-	}
-	
-	public static <From> Mapper<From, Class<From>> toClassM() {
-		return new Mapper<From, Class<From>>() {
-			@SuppressWarnings("unchecked")
-			public Class<From> map(From from) {
-				return (Class<From>) from.getClass();
-			}
-		};
-	}
 }

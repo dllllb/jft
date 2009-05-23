@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.impl.Mapper;
+import org.ext.jft.function.impl.Mappers;
 import org.ext.jft.function.impl.Predicate;
+import org.ext.jft.function.impl.Predicates;
 import org.junit.Test;
 
 /**
@@ -40,13 +42,13 @@ public class ListFTest {
 	
 	@Test
 	public void map() {
-		List<String> res = arrayList(1, 2).map(Mapper.<Integer>toStringM());
+		List<String> res = arrayList(1, 2).map(Mappers.<Integer>toStringM());
 		assertSame(arrayList("1", "2"), res);
 	}
 
 	@Test
 	public void filter() {
-		List<Integer> res = arrayList(null, 1, 2).filter(Predicate.<Integer> notNullP());
+		List<Integer> res = arrayList(null, 1, 2).filter(Predicates.<Integer>notNullP());
 		assertSame(arrayList(1, 2), res);
 	}
 	
