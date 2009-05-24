@@ -22,7 +22,7 @@ public class FilteringIterator<E> implements IteratorF<E> {
 		if (lastValue == null) {
 			while (inner.hasNext()) {
 				E value = inner.next();
-				if (predicate.test(lastValue)) {
+				if (predicate.test(value)) {
 					lastValue = value;
 					return true;
 				}
