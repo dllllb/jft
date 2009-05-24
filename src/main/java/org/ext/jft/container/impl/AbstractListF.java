@@ -26,12 +26,6 @@ public abstract class AbstractListF<E> extends AbstractCollectionF<E> implements
 		return getFront().getOrThrow(ex);
 	}
 
-	public Option<E> getRandomValue() {
-		int size = this.size();
-		int n = (int) Math.random() * size;
-		return n < size ? Option.some(get(n)) : Option.<E>none();
-	}
-
 	public <B extends Comparable<Object>> ListF<E> sortBy(final Mapper<E, B> mapper) {
 		ListF<E> res = arrayList(this);
 		Collections.sort(res, new Comparator<E>() {
