@@ -17,7 +17,5 @@ public interface ListF<E> extends List<E>, CollectionF<E> {
 	
 	<B extends Comparable<Object>> ListF<E> sortBy(Mapper<E, B> mapper);
 	 
-	Option<E> getRandomValue();
-	
 	ListF<E> subList(int fromIndex, int toIndex);
 }

@@ -57,10 +57,10 @@ public class Pair<T1, T2> implements Serializable {
 	}
 
 	public Pair<T2, T1> swap() {
-		return create(second, first);
+		return pair(second, first);
 	}
 
-	public static <A, B> Pair<A, B> create(A a, B b) {
+	public static <A, B> Pair<A, B> pair(A a, B b) {
 		return new Pair<A, B>(a, b);
 	}
 

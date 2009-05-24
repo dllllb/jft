@@ -49,7 +49,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	public <Key> MapF<Key, E> toMapMappingToKey(final Mapper<E, Key> mapper) {
 		Separator<E, Key, E> separator = new Separator<E, Key, E>() {
 			public Pair<Key, E> separate(E from) {
-				return Pair.create(mapper.map(from), from);
+				return Pair.pair(mapper.map(from), from);
 			}
 		};
 
