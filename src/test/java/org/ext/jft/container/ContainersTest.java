@@ -19,5 +19,17 @@ public class ContainersTest {
 	@Test
 	public void linkedListTest() {
 		assertSame(arrayList(1, 2, 3), linkedList(1, 2, 3));
+		assertSame(arrayList(1, 2, 3), linkedList((Iterable<Integer>)arrayList(1, 2, 3)));
+	}
+	
+	@Test
+	public void hashSetTest() {
+		assertSame(arrayList(1, 2, 3), hashSet(1, 2, 3));
+		assertSame(arrayList(1, 2, 3), hashSet((Iterable<Integer>)arrayList(1, 2, 3)));
+	}
+	
+	@Test
+	public void treeMapTest() {
+		assertSame(arrayList(), treeMap().values());
 	}
 }
