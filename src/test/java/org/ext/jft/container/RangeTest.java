@@ -12,7 +12,14 @@ import org.junit.Test;
 public class RangeTest {
 	
 	@Test
-	public void generate() {
+	public void generateTest() {
 		assertSame(arrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), arrayList(range(10)));
+		assertSame(arrayList(2, 3, 4), arrayList(range(2, 5)));
+		assertSame(arrayList(2, 4, 6, 8), arrayList(range(2, 10, 2)));
+	}
+	
+	@Test(expected=UnsupportedOperationException.class)
+	public void removeTest() {
+		range(10).iterator().remove();
 	}
 }
