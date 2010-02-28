@@ -5,6 +5,10 @@ import org.ext.jft.container.Pair;
 /**
  * @author Dmitri Babaev
  */
-public interface Separator<From, ToLeft, ToRight> {
-	Pair<ToLeft, ToRight> separate(From from);
+public abstract class Separator<From, ToLeft, ToRight> extends Mapper<From, Pair<ToLeft, ToRight>> {
+	public Pair<ToLeft,ToRight> map(From from ){
+		return separate(from);
+	};
+	
+	public abstract Pair<ToLeft,ToRight> separate(From from);
 }
