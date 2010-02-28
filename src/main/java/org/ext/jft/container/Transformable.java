@@ -31,15 +31,15 @@ public abstract class Transformable<E> implements Iterable<E> {
 		return res;
 	}
 	
-	ListF<E> toArrayList() {
+	public ListF<E> toArrayList() {
 		return arrayList(this);
 	}
 	
-	ListF<E> toLinkedList() {
+	public ListF<E> toLinkedList() {
 		return linkedList(this);
 	}
 	
-	SetF<E> toHashSet() {
+	public SetF<E> toHashSet() {
 		return hashSet(this);
 	}
 }

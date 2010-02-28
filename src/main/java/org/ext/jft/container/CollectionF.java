@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
+import org.ext.jft.function.Operation;
 import org.ext.jft.function.Predicate;
-import org.ext.jft.function.Separator;
 
 /**
  * Extended {@link Collection} interface that provides extended features to the standard collections
@@ -49,7 +49,7 @@ public interface CollectionF<E> extends Collection<E> {
 	 * @param separator - functor that produces a key/value pair for the collection's element
 	 * @return a map of key/value pairs
 	 */
-	<MapKey, MapValue> MapF<MapKey, MapValue> toMap(Separator<E, MapKey, MapValue> separator);
+	<MapKey, MapValue> MapF<MapKey, MapValue> toMap(Mapper<E, Pair<MapKey, MapValue>> separator);
 
 	/**
 	 * Produces a dictionary from the collection generating a key for each element of the collection
@@ -62,4 +62,10 @@ public interface CollectionF<E> extends Collection<E> {
 	 * Redefined method that returns extended {@link Iterator} interface
 	 */
 	IteratorF<E> iterator();
+	
+	/**
+	 * Perform operation for each element of the container
+	 * @param operation - operation to perform
+	 */
+	void forEach(Operation<E> operation);
 }

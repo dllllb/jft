@@ -3,9 +3,13 @@ package org.ext.jft.function;
 /**
  * @author Dmitri Babaev
  */
-public abstract class Predicate<T> {
+public abstract class Predicate<T> implements Converter<T, Boolean> {
 	
 	abstract public boolean test(T val);
+	
+	public Boolean convert(T from) {
+		return test(from);
+	}
 	
 	public Predicate<T> not() {
 		return new Predicate<T>() {

@@ -10,6 +10,7 @@ import org.ext.jft.container.SetF;
 import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
+import org.ext.jft.function.Operation;
 import org.ext.jft.function.Predicate;
 import org.ext.jft.function.Separator;
 
@@ -35,11 +36,11 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	}
 	
 	public <MapKey, MapValue> MapF<MapKey, MapValue> toMap(
-			Separator<E, MapKey, MapValue> separator) {
+			Mapper<E, Pair<MapKey, MapValue>> separator) {
 		MapF<MapKey, MapValue> map = hashMap();
 
 		for (E val : this) {
-			Pair<MapKey, MapValue> pair = separator.separate(val);
+			Pair<MapKey, MapValue> pair = separator.map(val);
 			map.put(pair.first(), pair.second());
 		}
 
@@ -58,5 +59,11 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	
 	public SetF<E> unique() {
 		return hashSet(this);
+	}
+	
+	public void forEach(Operation<E> operation) {
+		for (E element : this) {
+			operation.perform(element);
+		}
 	}
 }
