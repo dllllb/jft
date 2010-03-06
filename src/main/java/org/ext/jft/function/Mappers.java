@@ -21,4 +21,12 @@ public class Mappers {
 			}
 		};
 	}
+	
+	public static <T> Mapper<Factory<T>, T> constructM() {
+		return new Mapper<Factory<T>, T>() {
+			public T map(Factory<T> builder) {
+				return builder.construct();
+			}
+		};
+	}
 }
