@@ -1,13 +1,16 @@
 package org.ext.jft.container;
 
 import static org.ext.jft.container.Containers.array;
+import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.container.Containers.hashMap;
 import static org.ext.jft.test.Asserts.assertSame;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.ext.jft.function.Mappers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,5 +47,12 @@ public class MapFTest {
 		control.put(2, "b");
 		
 		assertSame(control, map);
+	}
+	
+	@Test
+	public void getOrElseUpdate() {
+		MapF<Integer, List<Integer>> map = hashMap();
+		map.getOrElseUpdate(1, Mappers.<Integer, Integer>newArrayListM()).add(1);
+		assertSame(arrayList(1), map.get(1));
 	}
 }
