@@ -6,6 +6,7 @@ import static org.ext.jft.container.Containers.hashMap;
 import static org.ext.jft.test.Asserts.assertSame;
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,5 +55,8 @@ public class MapFTest {
 		MapF<Integer, List<Integer>> map = hashMap();
 		map.getOrElseUpdate(1, Mappers.<Integer, Integer>newArrayListM()).add(1);
 		assertSame(arrayList(1), map.get(1));
+		MapF<Integer, List<Integer>> map2 = hashMap();
+		map2.getOrElseUpdate(1, Containers.<Integer>arrayList()).add(1);
+		assertSame(arrayList(1), map2.get(1));
 	}
 }
