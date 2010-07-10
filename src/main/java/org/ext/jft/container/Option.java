@@ -35,7 +35,7 @@ public abstract class Option<T> implements Iterable<T> {
 	public abstract T get();
 
 	private static final class None<T> extends Option<T> {
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({ "rawtypes" })
 		private static final None NONE = new None();
 
 		public <E extends Throwable> T getOrThrow(E e) throws E {
