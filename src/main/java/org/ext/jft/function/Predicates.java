@@ -51,10 +51,18 @@ public class Predicates {
 		};
 	}
 
-	public static <T> Predicate<T> containsP(final Collection<T> collection) {
+	public static <T> Predicate<T> elementOfP(final Collection<T> collection) {
 		return new Predicate<T>() {
 			public boolean test(T e) {
 				return collection.contains(e);
+			}
+		};
+	}
+	
+	public static <T> Predicate<Collection<T>> containsP(final T element) {
+		return new Predicate<Collection<T>>() {
+			public boolean test(Collection<T> collection) {
+				return collection.contains(element);
 			}
 		};
 	}
