@@ -146,9 +146,10 @@ public abstract class Option<T> implements Iterable<T> {
 		return new Some<T>(content);
 	}
 
-	@SuppressWarnings("unchecked")
 	public static <T> Option<T> none() {
-		return None.NONE;
+		@SuppressWarnings("unchecked")
+		None<T> res = None.NONE;
+		return res;
 	}
 
 	public static <T> Option<T> notNull(T x) {
