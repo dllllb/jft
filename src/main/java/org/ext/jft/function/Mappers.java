@@ -19,9 +19,10 @@ public class Mappers {
 	
 	public static <From> Mapper<From, Class<From>> toClassM() {
 		return new Mapper<From, Class<From>>() {
-			@SuppressWarnings("unchecked")
 			public Class<From> map(From from) {
-				return (Class<From>) from.getClass();
+				@SuppressWarnings("unchecked")
+				Class<From> res = (Class<From>) from.getClass();
+				return res;
 			}
 		};
 	}
