@@ -66,4 +66,31 @@ public class Predicates {
 			}
 		};
 	}
+	
+	public static <T> Predicate<T> any(final Predicate<T>... preds) {
+		return new Predicate<T>() {
+			public boolean test(T val) {
+				for (Predicate<T> pred : preds) {
+					if (pred.test(val))
+						return true;
+				}
+				
+				return false;
+			}
+		};
+	}
+	
+	public static <T> Predicate<T> all(final Predicate<T>... preds) {
+		return new Predicate<T>() {
+			public boolean test(T val) {
+				for (Predicate<T> pred : preds) {
+					if (!pred.test(val)) {
+						return false;
+					}
+				}
+				
+				return true;
+			}
+		};
+	}
 }

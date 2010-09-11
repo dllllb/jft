@@ -50,33 +50,6 @@ public abstract class Predicate<T> implements Converter<T, Boolean> {
 			}
 		};
 	}
-	
-	public Predicate<T> any(final Predicate<T>... preds) {
-		return new Predicate<T>() {
-			public boolean test(T val) {
-				for (Predicate<T> pred : preds) {
-					if (pred.test(val))
-						return true;
-				}
-				
-				return false;
-			}
-		};
-	}
-	
-	public Predicate<T> all(final Predicate<T>... preds) {
-		return new Predicate<T>() {
-			public boolean test(T val) {
-				for (Predicate<T> pred : preds) {
-					if (!pred.test(val)) {
-						return false;
-					}
-				}
-				
-				return true;
-			}
-		};
-	}
 
 	public Mapper<T, Boolean> asMapper() {
 		return new Mapper<T, Boolean>() {
