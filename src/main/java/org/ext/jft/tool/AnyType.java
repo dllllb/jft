@@ -1,6 +1,6 @@
 package org.ext.jft.tool;
 
-public class Cast {
+public class AnyType {
 	/**
 	 * This helper method uses type inference to omit the type declaration which is required for the cast operator
 	 */
