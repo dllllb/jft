@@ -9,17 +9,15 @@ import org.ext.jft.container.Option;
  * @author Dmitri Babaev
  */
 public class RegExp {
-	public static Option<String> findFirstGroup(Pattern pattern, String input) {
+	public static Option<String> find(Pattern pattern, String input) {
 		Matcher m = pattern.matcher(input);
 		if (!m.find())
 			return Option.none();
-		else if (m.groupCount() < 1)
-			return Option.none();
 		else
-			return Option.some(m.group(1));
+			return Option.some(m.group());
 	}
 
-	public static Option<String> findFirstGroup(String pattern, String input) {
-		return findFirstGroup(Pattern.compile(pattern), input);
+	public static Option<String> find(String pattern, String input) {
+		return find(Pattern.compile(pattern), input);
 	}
 }
