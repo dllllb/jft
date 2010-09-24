@@ -18,7 +18,7 @@ import org.junit.Test;
 public class PredicatesTest {
 	
 	@Test
-	public void anyPred() {
+	public void checkAnyPred() {
 		@SuppressWarnings("unchecked")
 		Predicate<String> test = any(equalsP("a"), equalsP("b"));
 		assertTrue(test.test("a"));
@@ -26,7 +26,7 @@ public class PredicatesTest {
 	}
 	
 	@Test
-	public void allPred() {
+	public void checkAllPred() {
 		@SuppressWarnings("unchecked")
 		Predicate<String> test = all(equalsP("a").not(), equalsP("b").not());
 		assertTrue(test.test("as"));
@@ -34,14 +34,14 @@ public class PredicatesTest {
 	}
 	
 	@Test
-	public void elementOfPred() {
+	public void checkElementOfPred() {
 		Predicate<String> test = elementOfP(Arrays.asList("a", "b"));
 		assertTrue(test.test("a"));
 		assertFalse(test.test("c"));
 	}
 	
 	@Test
-	public void containsPred() {
+	public void checkContainsPred() {
 		Predicate<Collection<String>> test = Predicates.containsP("a");
 		assertTrue(test.test(Arrays.asList("a", "b")));
 		assertFalse(test.test(Arrays.asList("c", "d")));

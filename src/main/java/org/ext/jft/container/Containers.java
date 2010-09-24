@@ -120,4 +120,8 @@ public class Containers {
 	static public <T> T[] array(T... values) {
 		return values;
 	}
+	
+	static public <T> ListF<T> asList(T... values) {
+		return decorate(Arrays.asList(values));
+	}
 }

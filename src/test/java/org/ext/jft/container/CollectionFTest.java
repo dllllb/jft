@@ -14,7 +14,7 @@ import org.junit.Test;
 public class CollectionFTest {
 
 	@Test
-	public void toMapMappingToKey() {
+	public void checkToMapMappingToKey() {
 		@SuppressWarnings("unchecked")
 		ListF<Pair<Integer, String>> list = arrayList(pair(1, "a"), pair(2, "b"));
 		

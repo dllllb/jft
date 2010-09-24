@@ -14,7 +14,7 @@ import org.junit.Assert;
  */
 public class Asserts {
 	
-	public static <T> void assertSame(Collection<T> expecteds, Collection<T> actuals) {
+	public static <T> void assertElementsEquals(Collection<T> expecteds, Collection<T> actuals) {
 		assertNotNull("expected collection is null", expecteds);
 		assertNotNull("actual collection is null", actuals);
 		
@@ -30,7 +30,7 @@ public class Asserts {
 		}
 	}
 
-	public static <K, V> void assertSame(Map<K, V> expecteds, Map<K, V> actuals) {
+	public static <K, V> void assertElementsEquals(Map<K, V> expecteds, Map<K, V> actuals) {
 		assertNotNull("expected map is null", expecteds);
 		assertNotNull("actual map is null", actuals);
 		

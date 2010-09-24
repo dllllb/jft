@@ -8,7 +8,7 @@ import org.junit.Test;
 public class OptionTest {
 	
 	@Test
-	public void iterateTest() {
+	public void checkIterate() {
 		Option<Integer> full = Option.some(10);
 		
 		int iterations = 0;
@@ -28,58 +28,58 @@ public class OptionTest {
 	}
 	
 	@Test(expected=RuntimeException.class)
-	public void getOrThrowNoneTest() {
+	public void checkGetOrThrowNone() {
 		Option.none().getOrThrow(new RuntimeException());
 	}
 	
 	@Test(expected=RuntimeException.class)
-	public void getOrThrowStringNoneTest() {
+	public void checkGetOrThrowStringNone() {
 		Option.none().getOrThrow("error");
 	}
 	
 	@Test
-	public void getOrThrowSomeTest() {
+	public void checkGetOrThrowSome() {
 		assertEquals(10, Option.some(10).getOrThrow(new RuntimeException()).intValue());
 		assertEquals(10, Option.some(10).getOrThrow("error").intValue());
 	}
 	
 	@Test
-	public void getOrElseTest() {
+	public void checkGetOrElse() {
 		assertEquals(10, Option.some(10).getOrElse(11).intValue());
 		assertEquals(10, Option.<Integer>none().getOrElse(10).intValue());
 	}
 	
 	@Test
-	public void isEmptyTest() {
+	public void checkIsEmpty() {
 		assertFalse(Option.some(10).isEmpty());
 		assertTrue(Option.none().isEmpty());
 	}
 	
 	@Test
-	public void isDefinedTest() {
+	public void checkIsDefined() {
 		assertTrue(Option.some(10).isDefined());
 		assertFalse(Option.none().isDefined());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void createNullSomeTest() {
+	public void checkCreateNullSome() {
 		Option.some(null);
 	}
 	
 	@Test
-	public void getTest() {
+	public void checkGet() {
 		assertEquals(10, Option.some(10).get().intValue());
 		assertNull(Option.none().get());
 	}
 	
 	@Test
-	public void notNullTest() {
+	public void checkNotNull() {
 		assertTrue(Option.notNull(10).isDefined());
 		assertTrue(Option.notNull(null).isEmpty());
 	}
 	
 	@Test
-	public void notEmptyTest() {
+	public void checkNotEmpty() {
 		assertTrue(Option.notEmpty("test").isDefined());
 		assertTrue(Option.notEmpty("").isEmpty());
 	}
