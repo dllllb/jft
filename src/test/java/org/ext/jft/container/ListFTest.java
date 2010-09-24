@@ -3,7 +3,7 @@ package org.ext.jft.container;
 import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.container.Containers.decorate;
 import static org.ext.jft.container.Range.range;
-import static org.ext.jft.test.Asserts.assertSame;
+import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import org.junit.Test;
  */
 public class ListFTest {
 	@Test
-	public void mapFilterReduce() {
+	public void checkMapFilterReduce() {
 		int res = decorate(arrayList(range(10))).map(new Mapper<Integer, Integer>() {
 			public Integer map(Integer from) {
 				return from + 1;
@@ -40,25 +40,25 @@ public class ListFTest {
 	}
 	
 	@Test
-	public void map() {
+	public void checkMap() {
 		List<String> res = arrayList(1, 2)
 				.map(Mappers.<Integer>toStringM())
 				.toArrayList();
 		
-		assertSame(arrayList("1", "2"), res);
+		assertElementsEquals(arrayList("1", "2"), res);
 	}
 
 	@Test
-	public void filter() {
+	public void checkFilter() {
 		List<Integer> res = arrayList(null, 1, 2)
 				.filter(Predicates.<Integer>notNullP())
 				.toArrayList();
 		
-		assertSame(arrayList(1, 2), res);
+		assertElementsEquals(arrayList(1, 2), res);
 	}
 	
 	@Test
-	public void newArrayList() {
-		assertSame(Arrays.asList(1, 2, 3), arrayList(1, 2, 3));
+	public void checkNewArrayList() {
+		assertElementsEquals(Arrays.asList(1, 2, 3), arrayList(1, 2, 3));
 	}
 }
