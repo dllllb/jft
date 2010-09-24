@@ -19,4 +19,9 @@ public class MappedTransormable<F, T> extends Transformable<T> {
 	public IteratorF<T> iterator() {
 		return new MappingIterator<F, T>(inner.iterator(), mapper);
 	}
+	
+	@Override
+	public <To> Transformable<To> map(Mapper<T, To> mapper) {
+		return new MappedTransormable<F, To>(inner, this.mapper.andThen(mapper));
+	}
 }
