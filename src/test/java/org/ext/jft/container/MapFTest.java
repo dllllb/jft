@@ -1,8 +1,8 @@
 package org.ext.jft.container;
 
-import static org.ext.jft.container.Containers.array;
 import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.container.Containers.hashMap;
+import static org.ext.jft.container.Pair.pair;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -40,7 +40,8 @@ public class MapFTest {
 	
 	@Test
 	public void checkHashMap() {
-		Map<Integer, String> map = hashMap(array(1, 2), array("a", "b"));
+		@SuppressWarnings("unchecked")
+		Map<Integer, String> map = hashMap(pair(1, "a"), pair(2, "b"));
 		
 		Map<Integer, String> control = new HashMap<Integer, String>();
 		control.put(1, "a");
