@@ -123,4 +123,8 @@ public class Containers {
 	static public <T> ListF<T> asList(T... values) {
 		return decorate(Arrays.asList(values));
 	}
+	
+	public static <T> Iterable<T> newIterable(Generator<T> generator) {
+		return new IterableGenerator<T>(generator);
+	}
 }

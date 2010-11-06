@@ -6,15 +6,15 @@ package org.ext.jft.container;
  * @author Dmitri Babaev
  */
 public class Range {
-	static IntRange range(int to) {
-		return new IntRange(0, to, 1);
+	static Iterable<Integer> range(int to) {
+		return range(0, to, 1);
 	}
 	
-	static IntRange range(int from, int to) {
-		return new IntRange(from, to, 1);
+	static Iterable<Integer> range(int from, int to) {
+		return range(from, to, 1);
 	}
 	
-	static IntRange range(int from, int to, int step) {
-		return new IntRange(from, to, step);
+	static Iterable<Integer> range(int from, int to, int step) {
+		return Containers.newIterable(new IntRangeGenerator(from, to, step));
 	}
 }
