@@ -5,12 +5,12 @@ import static org.ext.jft.test.Asserts.assertElementsEquals;
 
 import org.junit.Test;
 
-public class IteratorFTest {
+public class IterableIteratorTest {
 
 	@Test
 	public void checkIterableIterator() {
 		ListF<Integer> expected = arrayList(1, 2, 3);
-		ListF<Integer> actual = arrayList(expected.iterator());
+		ListF<Integer> actual = arrayList(Containers.newIterable(expected.iterator()));
 		
 		assertElementsEquals(expected, actual);
 	}

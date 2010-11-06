@@ -2,13 +2,12 @@ package org.ext.jft.container.impl;
 
 import java.util.Iterator;
 
-import org.ext.jft.container.IteratorF;
 import org.ext.jft.function.Mapper;
 
 /**
  * @author Dmitri Babaev
  */
-public class MappingIterator<F, T> implements IteratorF<T> {
+public class MappingIterator<F, T> implements Iterator<T> {
 	private Iterator<F> inner;
 	private Mapper<F, T> mapper;
 	
@@ -19,10 +18,6 @@ public class MappingIterator<F, T> implements IteratorF<T> {
 
 	public boolean hasNext() {
 		return inner.hasNext();
-	}
-	
-	public IteratorF<T> iterator() {
-		return this;
 	}
 	
 	public T next() {

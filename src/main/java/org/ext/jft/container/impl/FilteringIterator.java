@@ -2,13 +2,12 @@ package org.ext.jft.container.impl;
 
 import java.util.Iterator;
 
-import org.ext.jft.container.IteratorF;
 import org.ext.jft.function.Predicate;
 
 /**
  * @author Dmitri Babaev
  */
-public class FilteringIterator<E> implements IteratorF<E> {
+public class FilteringIterator<E> implements Iterator<E> {
 	private Iterator<E> inner;
 	private Predicate<E> predicate;
 	private E lastValue;
@@ -33,10 +32,6 @@ public class FilteringIterator<E> implements IteratorF<E> {
 		else {
 			return true;
 		}
-	}
-	
-	public IteratorF<E> iterator() {
-		return this;
 	}
 	
 	public E next() {

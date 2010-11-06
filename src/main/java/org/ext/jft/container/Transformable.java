@@ -2,6 +2,8 @@ package org.ext.jft.container;
 
 import static org.ext.jft.container.Containers.*;
 
+import java.util.Iterator;
+
 import org.ext.jft.container.impl.FilteredTransformable;
 import org.ext.jft.container.impl.MappedTransormable;
 import org.ext.jft.function.Combiner;
@@ -13,7 +15,7 @@ import org.ext.jft.function.Predicate;
  */
 public abstract class Transformable<E> implements Iterable<E> {
 
-	abstract public IteratorF<E> iterator();
+	abstract public Iterator<E> iterator();
 	
 	public <To> Transformable<To> map(Mapper<E, To> mapper) {
 		return new MappedTransormable<E, To>(this, mapper);

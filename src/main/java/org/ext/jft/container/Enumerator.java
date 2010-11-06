@@ -3,6 +3,6 @@ package org.ext.jft.container;
 /**
  * @author Dmitri Babaev
  */
-public interface Generator<T> {
+public interface Enumerator<T> {
 	Option<T> getNext();
 }

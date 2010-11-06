@@ -1,6 +1,7 @@
 package org.ext.jft.container.impl;
 
-import org.ext.jft.container.IteratorF;
+import java.util.Iterator;
+
 import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Predicate;
 
@@ -16,7 +17,7 @@ public class FilteredTransformable<E> extends Transformable<E> {
 		this.predicate = predicate;
 	}
 
-	public IteratorF<E> iterator() {
+	public Iterator<E> iterator() {
 		return new FilteringIterator<E>(inner.iterator(), predicate);
 	}
 }

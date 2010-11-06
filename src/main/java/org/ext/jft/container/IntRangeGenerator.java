@@ -3,7 +3,7 @@ package org.ext.jft.container;
 /**
  * @author Dmitri Babaev
  */
-public class IntRangeGenerator implements Generator<Integer> {
+public class IntRangeGenerator implements Enumerator<Integer> {
 	private int to;
 	private int step;
 	private int pos;

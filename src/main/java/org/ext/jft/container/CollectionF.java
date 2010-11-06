@@ -61,7 +61,7 @@ public interface CollectionF<E> extends Collection<E> {
 	/**
 	 * Redefined method that returns extended {@link Iterator} interface
 	 */
-	IteratorF<E> iterator();
+	Iterator<E> iterator();
 	
 	/**
 	 * Perform operation for each element of the container

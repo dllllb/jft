@@ -1,6 +1,7 @@
 package org.ext.jft.container.impl;
 
-import org.ext.jft.container.IteratorF;
+import java.util.Iterator;
+
 import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Mapper;
 
@@ -16,7 +17,7 @@ public class MappedTransormable<F, T> extends Transformable<T> {
 		this.mapper = mapper;
 	}
 
-	public IteratorF<T> iterator() {
+	public Iterator<T> iterator() {
 		return new MappingIterator<F, T>(inner.iterator(), mapper);
 	}
 	
