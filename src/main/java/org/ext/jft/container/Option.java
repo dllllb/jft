@@ -1,7 +1,5 @@
 package org.ext.jft.container;
 
-import static org.ext.jft.container.Containers.decorate;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -26,7 +24,7 @@ public abstract class Option<T> implements Iterable<T> {
 
 	public abstract boolean isDefined();
 	
-	public abstract IteratorF<T> iterator();
+	public abstract Iterator<T> iterator();
 
 	/**
 	 * Extract contained value from option container
@@ -66,8 +64,8 @@ public abstract class Option<T> implements Iterable<T> {
 			return false;
 		}
 		
-		public IteratorF<T> iterator() {
-			return decorate(new Iterator<T>() {
+		public Iterator<T> iterator() {
+			return new Iterator<T>() {
 				public boolean hasNext() {
 					return false;
 				}
@@ -79,7 +77,7 @@ public abstract class Option<T> implements Iterable<T> {
 				public void remove() {
 					throw new UnsupportedOperationException();
 				}
-			});
+			};
 		}
 	}
 
@@ -121,8 +119,8 @@ public abstract class Option<T> implements Iterable<T> {
 			return true;
 		}
 		
-		public IteratorF<T> iterator() {
-			return decorate(new Iterator<T>() {
+		public Iterator<T> iterator() {
+			return new Iterator<T>() {
 				private boolean extracted = false;
 				
 				public boolean hasNext() {
@@ -138,7 +136,7 @@ public abstract class Option<T> implements Iterable<T> {
 				public void remove() {
 					throw new UnsupportedOperationException();
 				}
-			});
+			};
 		}
 	}
 

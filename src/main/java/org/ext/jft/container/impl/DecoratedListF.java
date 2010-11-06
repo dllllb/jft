@@ -3,10 +3,10 @@ package org.ext.jft.container.impl;
 import static org.ext.jft.container.Containers.decorate;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.ext.jft.container.IteratorF;
 import org.ext.jft.container.ListF;
 
 public class DecoratedListF<E> extends AbstractListF<E> {
@@ -66,8 +66,8 @@ public class DecoratedListF<E> extends AbstractListF<E> {
 		return inner.isEmpty();
 	}
 
-	public IteratorF<E> iterator() {
-		return decorate(inner.iterator());
+	public Iterator<E> iterator() {
+		return inner.iterator();
 	}
 
 	public int lastIndexOf(Object o) {

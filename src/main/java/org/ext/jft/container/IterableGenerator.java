@@ -6,9 +6,9 @@ import java.util.Iterator;
  * @author Dmitri Babaev
  */
 public class IterableGenerator<T> implements Iterable<T> {
-	private Generator<T> generator;
+	private Enumerator<T> generator;
 	
-	public IterableGenerator(Generator<T> generator) {
+	public IterableGenerator(Enumerator<T> generator) {
 		this.generator = generator;
 	}
 	

@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.ext.jft.container.impl.DecoratedCollectionF;
-import org.ext.jft.container.impl.DecoratedIteratorF;
 import org.ext.jft.container.impl.DecoratedListF;
 import org.ext.jft.container.impl.DecoratedMapF;
 import org.ext.jft.container.impl.DecoratedSetF;
@@ -24,10 +23,6 @@ import org.ext.jft.container.impl.DecoratedSetF;
 public class Containers {
 	public static <T> ListF<T> decorate(List<T> list) {
 		return new DecoratedListF<T>(list);
-	}
-	
-	public static <T> IteratorF<T> decorate(Iterator<T> it) {
-		return new DecoratedIteratorF<T>(it);
 	}
 	
 	public static <K, V> MapF<K, V> decorate(Map<K, V> map) {
@@ -124,7 +119,11 @@ public class Containers {
 		return decorate(Arrays.asList(values));
 	}
 	
-	public static <T> Iterable<T> newIterable(Generator<T> generator) {
+	public static <T> Iterable<T> newIterable(Enumerator<T> generator) {
 		return new IterableGenerator<T>(generator);
+	}
+	
+	public static <T> Iterable<T> newIterable(Iterator<T> it) {
+		return new IterableIterator<T>(it);
 	}
 }
