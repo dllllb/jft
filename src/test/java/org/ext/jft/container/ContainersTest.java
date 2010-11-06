@@ -43,4 +43,21 @@ public class ContainersTest {
 	public void checkTreeMap() {
 		assertElementsEquals(arrayList(), treeMap().values());
 	}
+	
+	@Test
+	public void checkIterableIterator() {
+		ListF<Integer> expected = arrayList(1, 2, 3);
+		ListF<Integer> actual = arrayList(Containers.iterable(expected.iterator()));
+		
+		assertElementsEquals(expected, actual);
+	}
+	
+
+	@Test
+	public void checkIteratorEnumerator() {
+		ListF<Integer> expected = arrayList(1, 2, 3);
+		ListF<Integer> actual = arrayList(Containers.iterable(Containers.enumerator(expected.iterator())));
+		
+		assertElementsEquals(expected, actual);
+	}
 }

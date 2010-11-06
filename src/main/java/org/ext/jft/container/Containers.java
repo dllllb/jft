@@ -119,11 +119,51 @@ public class Containers {
 		return decorate(Arrays.asList(values));
 	}
 	
-	public static <T> Iterable<T> newIterable(Enumerator<T> generator) {
-		return new IterableGenerator<T>(generator);
+	public static <T> Iterator<T> iterator(Enumerator<T> enumerator) {
+		return new EnumeratorIterator<T>(enumerator);
 	}
 	
-	public static <T> Iterable<T> newIterable(Iterator<T> it) {
-		return new IterableIterator<T>(it);
+	public static <T> Iterable<T> iterable(final Iterator<T> it) {
+		return new Iterable<T>() {
+			public Iterator<T> iterator() {
+				return it;
+			}
+		};
+	}
+	
+	public static <T> Iterable<T> iterable(Enumerator<T> enumerator) {
+		return iterable(iterator(enumerator));
+	}
+	
+	public static <T> Enumerator<T> enumerator(final Iterator<T> it) {
+		return new Enumerator<T>() {
+			public Option<T> getNext() {
+				return it.hasNext() ? Option.some(it.next()) : Option.<T>none();
+			}
+		};
+	}
+	
+	private static class EnumeratorIterator<T> implements Iterator<T> {
+		private Enumerator<T> enumerator;
+		private Option<T> next;
+		
+		public EnumeratorIterator(Enumerator<T> enumerator) {
+			this.enumerator = enumerator;
+			next = enumerator.getNext();
+		}
+		
+		public boolean hasNext() {
+			return next.isDefined();
+		}
+
+		public T next() {
+			T res = next.get();
+			next = enumerator.getNext();
+			return res;
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
 	}
 }
