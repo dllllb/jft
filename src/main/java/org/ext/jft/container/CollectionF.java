@@ -1,7 +1,6 @@
 package org.ext.jft.container;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
@@ -57,11 +56,6 @@ public interface CollectionF<E> extends Collection<E> {
 	 * @return a map of elements mapped by generated keys
 	 */
 	<Key> MapF<Key, E> toMapMappingToKey(Mapper<E, Key> mapper);
-	
-	/**
-	 * Redefined method that returns extended {@link Iterator} interface
-	 */
-	Iterator<E> iterator();
 	
 	/**
 	 * Perform operation for each element of the container

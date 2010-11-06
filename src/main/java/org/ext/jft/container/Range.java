@@ -1,7 +1,7 @@
 package org.ext.jft.container;
 
 /**
- * This class is factory class.
+ * This class is a factory class.
  * It creates generator classes similar to the Python range generator.
  * @author Dmitri Babaev
  */
@@ -14,7 +14,18 @@ public class Range {
 		return range(from, to, 1);
 	}
 	
-	static Iterable<Integer> range(int from, int to, int step) {
-		return Containers.newIterable(new IntRangeGenerator(from, to, step));
+	static Iterable<Integer> range(final int from, final int to, final int step) {
+		return Containers.iterable(new Enumerator<Integer>() {
+			private int pos = from;
+			
+			public Option<Integer> getNext() {
+				if (pos < to) {
+					int ret = pos;
+					pos += step;
+					return Option.some(ret);
+				}
+				else return Option.none();
+			}
+		});
 	}
 }
