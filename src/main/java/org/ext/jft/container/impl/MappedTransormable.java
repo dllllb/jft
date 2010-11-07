@@ -18,7 +18,21 @@ public class MappedTransormable<F, T> extends Transformable<T> {
 	}
 
 	public Iterator<T> iterator() {
-		return new MappingIterator<F, T>(inner.iterator(), mapper);
+		return new Iterator<T>() {
+			Iterator<F> it = inner.iterator();
+
+			public boolean hasNext() {
+				return it.hasNext();
+			}
+
+			public T next() {
+				return mapper.map(it.next());
+			}
+
+			public void remove() {
+				it.remove();
+			}
+		};
 	}
 	
 	@Override
