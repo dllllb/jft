@@ -8,7 +8,11 @@ import static org.ext.jft.container.Containers.linkedList;
 import static org.ext.jft.container.Containers.treeMap;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
+import java.util.Map;
+
+import org.ext.jft.function.Mappers;
 import org.junit.Test;
 
 /**
@@ -59,5 +63,18 @@ public class ContainersTest {
 		ListF<Integer> actual = arrayList(Containers.iterable(Containers.enumerator(expected.iterator())));
 		
 		assertElementsEquals(expected, actual);
+	}
+	
+	@Test
+	public void checkZipIterable() {
+		ListF<Integer> first = arrayList(1, 2, 3, 4);
+		ListF<Integer> second = arrayList(4, 5, 6);
+		
+		ListF<Pair<Integer, Integer>> list = arrayList(Containers.zipIterable(first, second));
+		assertEquals(3, list.size());
+		Map<Integer, Integer> map = list.toMap(Mappers.<Pair<Integer, Integer>>dummyMapper());
+		
+		assertEquals(Integer.valueOf(4), map.get(1));
+		assertEquals(Integer.valueOf(6), map.get(3));
 	}
 }

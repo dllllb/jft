@@ -42,4 +42,12 @@ public class Mappers {
 			}
 		};
 	}
+	
+	public static <T> Mapper<T, T> dummyMapper() {
+		return new Mapper<T, T>() {
+			public T map(T from) {
+				return from;
+			}
+		};
+	}
 }

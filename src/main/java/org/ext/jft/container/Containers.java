@@ -158,4 +158,28 @@ public class Containers {
 			}
 		};
 	}
+	
+	public static <T1, T2> Iterable<Pair<T1, T2>> zipIterable(final Iterable<T1> first, final Iterable<T2> second) {
+		return new Iterable<Pair<T1, T2>>() {
+			public Iterator<Pair<T1, T2>> iterator() {
+				return new Iterator<Pair<T1, T2>>() {
+					Iterator<T1> itFirst = first.iterator();
+					Iterator<T2> itSecond = second.iterator();
+					
+					public boolean hasNext() {
+						return itFirst.hasNext() && itSecond.hasNext();
+					}
+					
+					public Pair<T1, T2> next() {
+						return Pair.pair(itFirst.next(), itSecond.next());
+					}
+					
+					public void remove() {
+						itFirst.remove();
+						itSecond.remove();
+					}
+				};
+			}
+		};
+	}
 }
