@@ -16,7 +16,7 @@ public class Range {
 	
 	static Iterable<Integer> range(final int from, final int to, final int step) {
 		return Containers.iterable(new Enumerator<Integer>() {
-			private int pos = from;
+			int pos = from;
 			
 			public Option<Integer> getNext() {
 				if (pos < to) {

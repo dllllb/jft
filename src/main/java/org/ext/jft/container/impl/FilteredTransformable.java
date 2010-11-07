@@ -2,6 +2,7 @@ package org.ext.jft.container.impl;
 
 import java.util.Iterator;
 
+import org.ext.jft.container.Option;
 import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Predicate;
 
@@ -18,6 +19,36 @@ public class FilteredTransformable<E> extends Transformable<E> {
 	}
 
 	public Iterator<E> iterator() {
-		return new FilteringIterator<E>(inner.iterator(), predicate);
+		return new Iterator<E>() {
+			Iterator<E> it = inner.iterator();
+			Option<E> lastValue = getNextValue();
+			
+			Option<E> getNextValue() {
+				while (it.hasNext()) {
+					E value = it.next();
+					if (predicate.test(value)) {
+						return Option.some(value);
+					}
+				}
+				
+				return Option.none();
+			}
+
+			public boolean hasNext() {
+				return lastValue.isDefined();
+			}
+
+			public E next() {
+				E res = lastValue.get();
+				lastValue = getNextValue();
+				return res;
+			}
+
+			public void remove() {
+				it.remove();
+				lastValue = getNextValue();
+			}
+			
+		};
 	}
 }

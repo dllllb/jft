@@ -121,7 +121,7 @@ public class Containers {
 	
 	public static <T> Iterator<T> iterator(final Enumerator<T> enumerator) {
 		return new Iterator<T>() {
-			private Option<T> next = enumerator.getNext();;
+			Option<T> next = enumerator.getNext();;
 			
 			public boolean hasNext() {
 				return next.isDefined();
