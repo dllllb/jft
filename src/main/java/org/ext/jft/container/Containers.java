@@ -119,8 +119,24 @@ public class Containers {
 		return decorate(Arrays.asList(values));
 	}
 	
-	public static <T> Iterator<T> iterator(Enumerator<T> enumerator) {
-		return new EnumeratorIterator<T>(enumerator);
+	public static <T> Iterator<T> iterator(final Enumerator<T> enumerator) {
+		return new Iterator<T>() {
+			private Option<T> next = enumerator.getNext();;
+			
+			public boolean hasNext() {
+				return next.isDefined();
+			}
+
+			public T next() {
+				T res = next.get();
+				next = enumerator.getNext();
+				return res;
+			}
+
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
 	}
 	
 	public static <T> Iterable<T> iterable(final Iterator<T> it) {
@@ -141,29 +157,5 @@ public class Containers {
 				return it.hasNext() ? Option.some(it.next()) : Option.<T>none();
 			}
 		};
-	}
-	
-	private static class EnumeratorIterator<T> implements Iterator<T> {
-		private Enumerator<T> enumerator;
-		private Option<T> next;
-		
-		public EnumeratorIterator(Enumerator<T> enumerator) {
-			this.enumerator = enumerator;
-			next = enumerator.getNext();
-		}
-		
-		public boolean hasNext() {
-			return next.isDefined();
-		}
-
-		public T next() {
-			T res = next.get();
-			next = enumerator.getNext();
-			return res;
-		}
-
-		public void remove() {
-			throw new UnsupportedOperationException();
-		}
 	}
 }
