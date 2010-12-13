@@ -9,6 +9,7 @@ import org.ext.jft.container.Pair;
 import org.ext.jft.container.SetF;
 import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Combiner;
+import org.ext.jft.function.Factory;
 import org.ext.jft.function.Mapper;
 import org.ext.jft.function.Operation;
 import org.ext.jft.function.Predicate;
@@ -35,10 +36,21 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 		return res;
 	}
 	
-	public <R> R aggregate(Combiner<R, E, R> combiner, R initial) {
+	public <R> R aggregate(Combiner<R, E, R> aggregator, R initial) {
 		R res = initial;
 		for (E val : this) {
-			res = combiner.combine(res, val);
+			res = aggregator.combine(res, val);
+		}
+		return res;
+	}
+	
+	@Override
+	public <R> R aggregate(Combiner<R, E, R> elementAggregator,
+		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial)
+	{
+		R res = initial.construct();
+		for (E val : this) {
+			res = elementAggregator.combine(res, val);
 		}
 		return res;
 	}
