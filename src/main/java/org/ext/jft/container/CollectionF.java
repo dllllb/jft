@@ -3,6 +3,7 @@ package org.ext.jft.container;
 import java.util.Collection;
 
 import org.ext.jft.function.Combiner;
+import org.ext.jft.function.Factory;
 import org.ext.jft.function.Mapper;
 import org.ext.jft.function.Operation;
 import org.ext.jft.function.Predicate;
@@ -36,7 +37,10 @@ public interface CollectionF<E> extends Collection<E> {
 	 */
 	E reduce(Combiner<E, E, E> combiner, E initial);
 	
-	<R> R aggregate(Combiner<R, E, R> combiner, R initial);
+	<R> R aggregate(Combiner<R, E, R> aggregator, R initial);
+	
+	<R> R aggregate(Combiner<R, E, R> elementAggregator,
+		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial);
 	
 	/**
 	 * Produces a set of unique objects from the collection's elements using standard {@code equals} operation
