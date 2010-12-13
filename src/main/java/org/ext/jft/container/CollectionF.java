@@ -36,6 +36,8 @@ public interface CollectionF<E> extends Collection<E> {
 	 */
 	E reduce(Combiner<E, E, E> combiner, E initial);
 	
+	<R> R aggregate(Combiner<R, E, R> combiner, R initial);
+	
 	/**
 	 * Produces a set of unique objects from the collection's elements using standard {@code equals} operation
 	 * to find duplicate elements
@@ -62,4 +64,6 @@ public interface CollectionF<E> extends Collection<E> {
 	 * @param operation - operation to perform
 	 */
 	void forEach(Operation<E> operation);
+	
+	IteratorF<E> iterator();
 }
