@@ -77,4 +77,10 @@ public class ContainersTest {
 		assertEquals(Integer.valueOf(4), map.get(1));
 		assertEquals(Integer.valueOf(6), map.get(3));
 	}
+	
+	public void checkFlatten() {
+		@SuppressWarnings("unchecked")
+		ListF<ListF<Integer>> lst = arrayList(arrayList(1,2,3), arrayList(4,5));
+		assertElementsEquals(arrayList(1, 2, 3, 4, 5), arrayList(Containers.flatten(lst)));
+	}
 }

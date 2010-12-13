@@ -1,7 +1,10 @@
 package org.ext.jft.container.impl;
 
+import static org.ext.jft.container.Containers.decorate;
+
 import java.util.Collection;
-import java.util.Iterator;
+
+import org.ext.jft.container.IteratorF;
 
 public class DecoratedCollectionF<E> extends AbstractCollectionF<E> {
 	private Collection<E> inner;
@@ -44,8 +47,8 @@ public class DecoratedCollectionF<E> extends AbstractCollectionF<E> {
 		return inner.isEmpty();
 	}
 
-	public Iterator<E> iterator() {
-		return inner.iterator();
+	public IteratorF<E> iterator() {
+		return decorate(inner.iterator());
 	}
 
 	public boolean remove(Object o) {

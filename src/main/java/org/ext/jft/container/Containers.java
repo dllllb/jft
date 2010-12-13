@@ -3,16 +3,19 @@ package org.ext.jft.container;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
 
 import org.ext.jft.container.impl.DecoratedCollectionF;
+import org.ext.jft.container.impl.DecoratedIteratorF;
 import org.ext.jft.container.impl.DecoratedListF;
 import org.ext.jft.container.impl.DecoratedMapF;
 import org.ext.jft.container.impl.DecoratedSetF;
@@ -128,7 +131,7 @@ public class Containers {
 			}
 
 			public T next() {
-				T res = next.get();
+				T res = next.getOrThrow(new NoSuchElementException());
 				next = enumerator.getNext();
 				return res;
 			}
@@ -177,6 +180,41 @@ public class Containers {
 					public void remove() {
 						itFirst.remove();
 						itSecond.remove();
+					}
+				};
+			}
+		};
+	}
+	
+	public static <E> IteratorF<E> decorate(Iterator<E> it) {
+		return new DecoratedIteratorF<E>(it);
+	}
+	
+	public static <E> Iterable<E> flatten(final Iterable<? extends Iterable<E>> iterables) {
+		return new Iterable<E>() {
+			public Iterator<E> iterator() {
+				return new Iterator<E>() {
+					Iterator<? extends Iterable<E>> outerIt = iterables.iterator();
+					Iterator<E> innerIt = outerIt.hasNext() ?
+						outerIt.next().iterator() : Collections.<E>emptyList().iterator();
+					
+					public boolean hasNext() {
+						return outerIt.hasNext() || innerIt.hasNext();
+					}
+					
+					public E next() {
+						if (innerIt.hasNext())
+							return innerIt.next();
+						else if (outerIt.hasNext()) {
+							innerIt = outerIt.next().iterator();
+							return next();
+						}
+						else
+							throw new NoSuchElementException();
+					}
+					
+					public void remove() {
+						throw new UnsupportedOperationException();
 					}
 				};
 			}

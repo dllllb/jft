@@ -35,6 +35,14 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 		return res;
 	}
 	
+	public <R> R aggregate(Combiner<R, E, R> combiner, R initial) {
+		R res = initial;
+		for (E val : this) {
+			res = combiner.combine(res, val);
+		}
+		return res;
+	}
+	
 	public <MapKey, MapValue> MapF<MapKey, MapValue> toMap(
 			Mapper<E, Pair<MapKey, MapValue>> separator) {
 		MapF<MapKey, MapValue> map = hashMap();
