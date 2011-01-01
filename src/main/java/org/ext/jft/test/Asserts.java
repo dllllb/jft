@@ -14,15 +14,15 @@ import org.junit.Assert;
  */
 public class Asserts {
 	
-	public static <T> void assertElementsEquals(Collection<T> expecteds, Collection<T> actuals) {
-		assertNotNull("expected collection is null", expecteds);
-		assertNotNull("actual collection is null", actuals);
+	public static <E1, E2> void assertElementsEquals(Collection<E1> expectedElements, Collection<E2> actualElements) {
+		assertNotNull("expected collection is null", expectedElements);
+		assertNotNull("actual collection is null", actualElements);
 		
 		Assert.assertEquals("size of the collections is different:",
-				expecteds.size(), actuals.size());
+				expectedElements.size(), actualElements.size());
 		
-		Iterator<T> expectedIt = expecteds.iterator();
-		Iterator<T> actualsIt = actuals.iterator();
+		Iterator<E1> expectedIt = expectedElements.iterator();
+		Iterator<E2> actualsIt = actualElements.iterator();
 
 		for (int i = 1; expectedIt.hasNext(); i++) {
 			Assert.assertEquals(String.format("difference in the collection elements number '%d':", i),
@@ -30,18 +30,18 @@ public class Asserts {
 		}
 	}
 
-	public static <K, V> void assertElementsEquals(Map<K, V> expecteds, Map<K, V> actuals) {
-		assertNotNull("expected map is null", expecteds);
-		assertNotNull("actual map is null", actuals);
+	public static <K, V> void assertElementsEquals(Map<K, V> expectedElements, Map<K, V> actualElements) {
+		assertNotNull("expected map is null", expectedElements);
+		assertNotNull("actual map is null", actualElements);
 		
 		Assert.assertEquals("size of the maps is different:",
-				expecteds.size(), actuals.size());
+				expectedElements.size(), actualElements.size());
 		
-		Iterator<Entry<K, V>> actualsIt = actuals.entrySet().iterator();
+		Iterator<Entry<K, V>> actualsIt = actualElements.entrySet().iterator();
 		
 		while (actualsIt.hasNext()) {
 			Entry<K, V> actual = actualsIt.next();
-			V expectedVal = expecteds.get(actual.getKey());
+			V expectedVal = expectedElements.get(actual.getKey());
 			assertTrue(String.format("expected map doesn't contains key '%s':", actual.getKey()),
 					expectedVal != null);
 			Assert.assertEquals(

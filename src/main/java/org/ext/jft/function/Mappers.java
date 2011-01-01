@@ -3,6 +3,7 @@ package org.ext.jft.function;
 import java.util.List;
 
 import org.ext.jft.container.Containers;
+import org.ext.jft.tool.AnyType;
 
 /**
  * @author Dmitri Babaev
@@ -47,6 +48,14 @@ public class Mappers {
 		return new Mapper<T, T>() {
 			public T map(T from) {
 				return from;
+			}
+		};
+	}
+	
+	public static <F, T> Mapper<F, T> castMapper() {
+		return new Mapper<F, T>() {
+			public T map(F from) {
+				return AnyType.cast(from);
 			}
 		};
 	}
