@@ -47,7 +47,7 @@ public class MapFTest {
 		control.put(1, "a");
 		control.put(2, "b");
 		
-		assertElementsEquals(control, map);
+		assertElementsEquals(control.entrySet(), map.entrySet());
 	}
 	
 	@Test
