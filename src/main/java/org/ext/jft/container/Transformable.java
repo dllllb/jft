@@ -28,7 +28,7 @@ public abstract class Transformable<E> implements Iterable<E> {
 	public E reduce(Combiner<E, E, E> combiner, E initial) {
 		E res = initial;
 		for (E val : this) {
-			res = combiner.combine(res, val);
+			res = combiner.apply(res, val);
 		}
 		return res;
 	}

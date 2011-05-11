@@ -13,7 +13,7 @@ import org.junit.Test;
 public class ReflectionMapperTest {
 	
 	@Test
-	public void checkReflectionMapper() {
+	public void testReflectionMapper() {
 		List<String> res = arrayList(new Integer(1), new Integer(2))
 			.map(ReflectionMapper.<Integer, String>newInstance("toString")).toArrayList();
 		Asserts.assertElementsEquals(arrayList("1", "2"), res);

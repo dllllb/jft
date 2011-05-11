@@ -14,14 +14,14 @@ import org.ext.jft.function.Combiner;
 public class CountSort {
 	static public <E> ListF<E> countSort(ListF<E> old) {
 		final MapF<E, Integer> map = old.aggregate(new Combiner<MapF<E, Integer>, E, MapF<E, Integer>>() {
-			public MapF<E, Integer> combine(MapF<E, Integer> count, E el) {
+			public MapF<E, Integer> apply(MapF<E, Integer> count, E el) {
 				count.put(el, count.getOrElse(el, 0).intValue()+1);
 				return count;
 			};
 		}, Containers.<E, Integer>treeMap());
 		
 		ListF<E> res = arrayList(flatten(map.map(new Combiner<E, Integer, Iterable<E>>() {
-			public Iterable<E> combine(final E val, final Integer sum) {
+			public Iterable<E> apply(final E val, final Integer sum) {
 				return iterable(new Enumerator<E>() {
 					int count = sum;
 					

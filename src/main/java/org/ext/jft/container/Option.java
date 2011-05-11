@@ -57,7 +57,7 @@ public abstract class Option<T> implements Iterable<T> {
 		}
 		
 		public T getOrElse(Factory<T> factory) {
-			return factory.construct();
+			return factory.produce();
 		}
 
 		public boolean isDefined() {

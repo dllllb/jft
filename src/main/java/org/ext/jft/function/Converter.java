@@ -5,5 +5,5 @@ package org.ext.jft.function;
  * @author Dmitri Babaev
  */
 public interface Converter <From, To> {
-	To convert(From from);
+	To apply(From from);
 }

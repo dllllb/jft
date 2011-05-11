@@ -8,17 +8,11 @@ import java.util.Comparator;
  */
 public abstract class Mapper<From, To> implements Converter<From, To> {
 	
-	abstract public To map(From from);
-	
-	public To convert(From from) {
-		return map(from);
-	}
-	
 	public <ToTo> Mapper<From, ToTo> andThen(
 			final Mapper<? super To, ? extends ToTo> mapper) {
 		return new Mapper<From, ToTo>() {
-			public ToTo map(From from) {
-				return mapper.map(Mapper.this.map(from));
+			public ToTo apply(From from) {
+				return mapper.apply(Mapper.this.apply(from));
 			}
 
 			public String toString() {
@@ -30,7 +24,7 @@ public abstract class Mapper<From, To> implements Converter<From, To> {
 	public Predicate<From> andThen(final Predicate<? super To> predicate) {
 		return new Predicate<From>() {
 			public boolean test(From a) {
-				return predicate.test(map(a));
+				return predicate.test(Mapper.this.apply(a));
 			}
 
 			public String toString() {
@@ -42,7 +36,7 @@ public abstract class Mapper<From, To> implements Converter<From, To> {
 	public Comparator<From> andThen(final Comparator<To> comparator) {
 		return new Comparator<From>() {
 			public int compare(From a, From b) {
-				return comparator.compare(map(a), map(b));
+				return comparator.compare(Mapper.this.apply(a), Mapper.this.apply(b));
 			}
 
 			public String toString() {

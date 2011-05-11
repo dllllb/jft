@@ -10,7 +10,7 @@ import org.junit.Test;
 public class AnyTypeTest {
 	
 	@Test
-	public void checkCast() {
+	public void testCast() {
 		Object a = new Integer(1);
 		Integer b = AnyType.cast(a);
 		assertEquals(a, b);

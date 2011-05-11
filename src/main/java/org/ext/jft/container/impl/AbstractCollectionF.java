@@ -31,7 +31,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	public E reduce(Combiner<E, E, E> combiner, E initial) {
 		E res = initial;
 		for (E val : this) {
-			res = combiner.combine(res, val);
+			res = combiner.apply(res, val);
 		}
 		return res;
 	}
@@ -39,7 +39,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	public <R> R aggregate(Combiner<R, E, R> aggregator, R initial) {
 		R res = initial;
 		for (E val : this) {
-			res = aggregator.combine(res, val);
+			res = aggregator.apply(res, val);
 		}
 		return res;
 	}
@@ -48,9 +48,9 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	public <R> R aggregate(Combiner<R, E, R> elementAggregator,
 		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial)
 	{
-		R res = initial.construct();
+		R res = initial.produce();
 		for (E val : this) {
-			res = elementAggregator.combine(res, val);
+			res = elementAggregator.apply(res, val);
 		}
 		return res;
 	}
@@ -60,7 +60,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 		MapF<MapKey, MapValue> map = hashMap();
 
 		for (E val : this) {
-			Pair<MapKey, MapValue> pair = separator.map(val);
+			Pair<MapKey, MapValue> pair = separator.apply(val);
 			map.put(pair.first(), pair.second());
 		}
 
@@ -69,8 +69,8 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 
 	public <Key> MapF<Key, E> toMapMappingToKey(final Mapper<E, Key> mapper) {
 		Separator<E, Key, E> separator = new Separator<E, Key, E>() {
-			public Pair<Key, E> separate(E from) {
-				return Pair.pair(mapper.map(from), from);
+			public Pair<Key, E> apply(E from) {
+				return Pair.pair(mapper.apply(from), from);
 			}
 		};
 

@@ -66,7 +66,7 @@ public class Pair<T1, T2> implements Serializable {
 
 	public static <A, B> Mapper<Pair<A, B>, A> getFirstM() {
 		return new Mapper<Pair<A, B>, A>() {
-			public A map(Pair<A, B> pair) {
+			public A apply(Pair<A, B> pair) {
 				return pair.first();
 			}
 		};
@@ -74,7 +74,7 @@ public class Pair<T1, T2> implements Serializable {
 
 	public static <A, B> Mapper<Pair<A, B>, B> getSecondM() {
 		return new Mapper<Pair<A, B>, B>() {
-			public B map(Pair<A, B> pair) {
+			public B apply(Pair<A, B> pair) {
 				return pair.second();
 			}
 		};
@@ -82,7 +82,7 @@ public class Pair<T1, T2> implements Serializable {
 
 	public static <A, B> Mapper<Pair<A, B>, Pair<B, A>> swapM() {
 		return new Mapper<Pair<A, B>, Pair<B, A>>() {
-			public Pair<B, A> map(Pair<A, B> pair) {
+			public Pair<B, A> apply(Pair<A, B> pair) {
 				return pair.swap();
 			}
 		};

@@ -21,9 +21,9 @@ import org.junit.Test;
  */
 public class ListFTest {
 	@Test
-	public void checkMapFilterReduce() {
+	public void testMapFilterReduce() {
 		int res = decorate(arrayList(range(10))).map(new Mapper<Integer, Integer>() {
-			public Integer map(Integer from) {
+			public Integer apply(Integer from) {
 				return from + 1;
 			}
 		}).filter(new Predicate<Integer>(){
@@ -31,7 +31,7 @@ public class ListFTest {
 				return val % 2 == 0;
 			}
 		}).reduce(new Combiner<Integer, Integer, Integer>() {
-			public Integer combine(Integer fromLeft, Integer fromRight) {
+			public Integer apply(Integer fromLeft, Integer fromRight) {
 				return fromLeft+fromRight;
 			}
 		}, 0);
@@ -40,7 +40,7 @@ public class ListFTest {
 	}
 	
 	@Test
-	public void checkMap() {
+	public void testMap() {
 		List<String> res = arrayList(1, 2)
 				.map(Mappers.<Integer>toStringM())
 				.toArrayList();
@@ -49,7 +49,7 @@ public class ListFTest {
 	}
 
 	@Test
-	public void checkFilter() {
+	public void testFilter() {
 		List<Integer> res = arrayList(null, 1, 2)
 				.filter(Predicates.<Integer>notNullP())
 				.toArrayList();
@@ -58,7 +58,7 @@ public class ListFTest {
 	}
 	
 	@Test
-	public void checkNewArrayList() {
+	public void testNewArrayList() {
 		assertElementsEquals(Arrays.asList(1, 2, 3), arrayList(1, 2, 3));
 	}
 }

@@ -17,7 +17,7 @@ public class ReflectionMapper<From, To> extends Mapper<From, To> {
 		this.params = params;
 	}
 	
-	public To map(From from) {
+	public To apply(From from) {
 		try {
 			Class<?> clazz = from.getClass();
 			Class<?>[] paramClasses = getParamClasses();

@@ -12,7 +12,7 @@ public class Mappers {
 	
 	public static <From> Mapper<From, String> toStringM() {
 		return new Mapper<From, String>() {
-			public String map(From from) {
+			public String apply(From from) {
 				return from.toString();
 			}
 		};
@@ -20,7 +20,7 @@ public class Mappers {
 	
 	public static <From> Mapper<From, Class<From>> toClassM() {
 		return new Mapper<From, Class<From>>() {
-			public Class<From> map(From from) {
+			public Class<From> apply(From from) {
 				@SuppressWarnings("unchecked")
 				Class<From> res = (Class<From>) from.getClass();
 				return res;
@@ -30,23 +30,23 @@ public class Mappers {
 	
 	public static <T> Mapper<Factory<T>, T> constructM() {
 		return new Mapper<Factory<T>, T>() {
-			public T map(Factory<T> builder) {
-				return builder.construct();
+			public T apply(Factory<T> builder) {
+				return builder.produce();
 			}
 		};
 	}
 	
 	public static <From, E> Mapper<From, List<E>> newArrayListM() {
 		return new Mapper<From, List<E>>() {
-			public List<E> map(From from) {
+			public List<E> apply(From from) {
 				return Containers.arrayList();
 			}
 		};
 	}
 	
-	public static <T> Mapper<T, T> dummyMapper() {
+	public static <T> Mapper<T, T> selfMapper() {
 		return new Mapper<T, T>() {
-			public T map(T from) {
+			public T apply(T from) {
 				return from;
 			}
 		};
@@ -54,7 +54,7 @@ public class Mappers {
 	
 	public static <F, T> Mapper<F, T> castMapper() {
 		return new Mapper<F, T>() {
-			public T map(F from) {
+			public T apply(F from) {
 				return AnyType.cast(from);
 			}
 		};
