@@ -27,7 +27,7 @@ public class ListFTest {
 				return from + 1;
 			}
 		}).filter(new Predicate<Integer>(){
-			public boolean test(Integer val) {
+			public boolean apply(Integer val) {
 				return val % 2 == 0;
 			}
 		}).reduce(new Combiner<Integer, Integer, Integer>() {

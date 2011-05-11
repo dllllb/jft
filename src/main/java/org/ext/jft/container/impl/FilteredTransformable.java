@@ -26,7 +26,7 @@ public class FilteredTransformable<E> extends Transformable<E> {
 			Option<E> getNextValue() {
 				while (it.hasNext()) {
 					E value = it.next();
-					if (predicate.test(value)) {
+					if (predicate.apply(value)) {
 						return Option.some(value);
 					}
 				}

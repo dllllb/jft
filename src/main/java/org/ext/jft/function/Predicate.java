@@ -3,18 +3,14 @@ package org.ext.jft.function;
 /**
  * @author Dmitri Babaev
  */
-public abstract class Predicate<T> implements Converter<T, Boolean> {
+public abstract class Predicate<T> {
 	
-	abstract public boolean test(T val);
-	
-	public Boolean apply(T from) {
-		return test(from);
-	}
+	abstract public boolean apply(T val);
 	
 	public Predicate<T> not() {
 		return new Predicate<T>() {
-			public boolean test(T a) {
-				return !Predicate.this.test(a);
+			public boolean apply(T a) {
+				return !Predicate.this.apply(a);
 			}
 
 			public Predicate<T> not() {
@@ -29,8 +25,8 @@ public abstract class Predicate<T> implements Converter<T, Boolean> {
 
 	public Predicate<T> or(final Predicate<T> pred) {
 		return new Predicate<T>() {
-			public boolean test(T a) {
-				return Predicate.this.test(a) || pred.test(a);
+			public boolean apply(T a) {
+				return Predicate.this.apply(a) || pred.apply(a);
 			}
 
 			public String toString() {
@@ -41,8 +37,8 @@ public abstract class Predicate<T> implements Converter<T, Boolean> {
 
 	public Predicate<T> and(final Predicate<T> pred) {
 		return new Predicate<T>() {
-			public boolean test(T a) {
-				return Predicate.this.test(a) && pred.test(a);
+			public boolean apply(T a) {
+				return Predicate.this.apply(a) && pred.apply(a);
 			}
 
 			public String toString() {
@@ -54,7 +50,7 @@ public abstract class Predicate<T> implements Converter<T, Boolean> {
 	public Mapper<T, Boolean> asMapper() {
 		return new Mapper<T, Boolean>() {
 			public Boolean apply(T a) {
-				return Predicate.this.test(a);
+				return Predicate.this.apply(a);
 			}
 
 			public String toString() {
