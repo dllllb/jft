@@ -6,7 +6,9 @@ import java.util.Comparator;
  * Transforms From object into To object
  * @author Dmitri Babaev
  */
-public abstract class Mapper<From, To> implements Converter<From, To> {
+public abstract class Mapper<From, To> {
+	
+	abstract public To apply(From from);
 	
 	public <ToTo> Mapper<From, ToTo> andThen(
 			final Mapper<? super To, ? extends ToTo> mapper) {
