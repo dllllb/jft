@@ -26,7 +26,7 @@ public class MappedTransormable<F, T> extends Transformable<T> {
 			}
 
 			public T next() {
-				return mapper.map(it.next());
+				return mapper.apply(it.next());
 			}
 
 			public void remove() {

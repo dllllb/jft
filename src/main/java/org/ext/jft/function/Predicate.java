@@ -7,7 +7,7 @@ public abstract class Predicate<T> implements Converter<T, Boolean> {
 	
 	abstract public boolean test(T val);
 	
-	public Boolean convert(T from) {
+	public Boolean apply(T from) {
 		return test(from);
 	}
 	
@@ -53,7 +53,7 @@ public abstract class Predicate<T> implements Converter<T, Boolean> {
 
 	public Mapper<T, Boolean> asMapper() {
 		return new Mapper<T, Boolean>() {
-			public Boolean map(T a) {
+			public Boolean apply(T a) {
 				return Predicate.this.test(a);
 			}
 

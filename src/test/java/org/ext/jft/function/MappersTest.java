@@ -2,6 +2,8 @@ package org.ext.jft.function;
 
 import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.ext.jft.container.ListF;
 import org.junit.Test;
@@ -31,5 +33,13 @@ public class MappersTest {
 		ListF<Double> nList = list.map(Mappers.<Integer, Double>castMapper()).toArrayList();
 		@SuppressWarnings("unused")
 		Double el = nList.get(0);
+	}
+	
+	@Test
+	public void testSelfMapper() {
+		Integer val = 1;
+		Integer res = Mappers.<Integer>selfMapper().apply(val);
+		assertEquals(val, res);
+		assertTrue(val == res);
 	}
 }

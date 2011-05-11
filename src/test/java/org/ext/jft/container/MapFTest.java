@@ -29,17 +29,17 @@ public class MapFTest {
 	}
 
 	@Test
-	public void checkGetOrThrow() {
+	public void testGetOrThrow() {
 		assertEquals(data, map.getOrThrow(key, new RuntimeException("no key")));
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void checkGetOrThrowException() {
+	public void testGetOrThrowException() {
 		map.getOrThrow(notKey, new RuntimeException("no key"));
 	}
 	
 	@Test
-	public void checkHashMap() {
+	public void testHashMap() {
 		@SuppressWarnings("unchecked")
 		Map<Integer, String> map = hashMap(pair(1, "a"), pair(2, "b"));
 		
@@ -51,7 +51,7 @@ public class MapFTest {
 	}
 	
 	@Test
-	public void checkGetOrElseUpdate() {
+	public void testGetOrElseUpdate() {
 		MapF<Integer, List<Integer>> map = hashMap();
 		map.getOrElseUpdate(1, Mappers.<Integer, Integer>newArrayListM()).add(1);
 		assertElementsEquals(arrayList(1), map.get(1));

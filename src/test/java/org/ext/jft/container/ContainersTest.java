@@ -21,35 +21,35 @@ import org.junit.Test;
 public class ContainersTest {
 
 	@Test
-	public void checkArray() {
+	public void testArray() {
 		assertArrayEquals(new Integer[] {1, 2, 3}, array(1, 2, 3));
 	}
 	
 	@Test
-	public void checkAsList() {
+	public void testAsList() {
 		assertElementsEquals(arrayList(1, 2, 3), asList(1, 2, 3));
 		assertElementsEquals(arrayList(1, 2, 3), Containers.asList(array(1, 2, 3)));
 	}
 	
 	@Test
-	public void checkLinkedList() {
+	public void testLinkedList() {
 		assertElementsEquals(arrayList(1, 2, 3), linkedList(1, 2, 3));
 		assertElementsEquals(arrayList(1, 2, 3), linkedList((Iterable<Integer>)arrayList(1, 2, 3)));
 	}
 	
 	@Test
-	public void checkHashSet() {
+	public void testHashSet() {
 		assertElementsEquals(arrayList(1, 2, 3), hashSet(1, 2, 3));
 		assertElementsEquals(arrayList(1, 2, 3), hashSet((Iterable<Integer>)arrayList(1, 2, 3)));
 	}
 	
 	@Test
-	public void checkTreeMap() {
+	public void testTreeMap() {
 		assertElementsEquals(arrayList(), treeMap().values());
 	}
 	
 	@Test
-	public void checkIterableIterator() {
+	public void testIterableIterator() {
 		ListF<Integer> expected = arrayList(1, 2, 3);
 		ListF<Integer> actual = arrayList(Containers.iterable(expected.iterator()));
 		
@@ -58,7 +58,7 @@ public class ContainersTest {
 	
 
 	@Test
-	public void checkIteratorEnumerator() {
+	public void testIteratorEnumerator() {
 		ListF<Integer> expected = arrayList(1, 2, 3);
 		ListF<Integer> actual = arrayList(Containers.iterable(Containers.enumerator(expected.iterator())));
 		
@@ -66,19 +66,19 @@ public class ContainersTest {
 	}
 	
 	@Test
-	public void checkZipIterable() {
+	public void testZipIterable() {
 		ListF<Integer> first = arrayList(1, 2, 3, 4);
 		ListF<Integer> second = arrayList(4, 5, 6);
 		
 		ListF<Pair<Integer, Integer>> list = arrayList(Containers.zipIterable(first, second));
 		assertEquals(3, list.size());
-		Map<Integer, Integer> map = list.toMap(Mappers.<Pair<Integer, Integer>>dummyMapper());
+		Map<Integer, Integer> map = list.toMap(Mappers.<Pair<Integer, Integer>>selfMapper());
 		
 		assertEquals(Integer.valueOf(4), map.get(1));
 		assertEquals(Integer.valueOf(6), map.get(3));
 	}
 	
-	public void checkFlatten() {
+	public void testFlatten() {
 		@SuppressWarnings("unchecked")
 		ListF<ListF<Integer>> lst = arrayList(arrayList(1,2,3), arrayList(4,5));
 		assertElementsEquals(arrayList(1, 2, 3, 4, 5), arrayList(Containers.flatten(lst)));

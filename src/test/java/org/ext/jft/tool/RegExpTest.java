@@ -9,7 +9,7 @@ import org.junit.Test;
 public class RegExpTest {
 	
 	@Test
-	public void checkFind() {
+	public void testFind() {
 		String res = RegExp.find("abc.", "---abcf---").getOrThrow("error");
 		Assert.assertEquals("abcf", res);
 	}

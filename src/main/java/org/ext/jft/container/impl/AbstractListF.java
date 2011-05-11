@@ -30,7 +30,7 @@ public abstract class AbstractListF<E> extends AbstractCollectionF<E> implements
 		ListF<E> res = arrayList(this);
 		Collections.sort(res, new Comparator<E>() {
 			public int compare(E o1, E o2) {
-				return mapper.map(o1).compareTo(mapper.map(o2));
+				return mapper.apply(o1).compareTo(mapper.apply(o2));
 			}
 		});
 		return res;
