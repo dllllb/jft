@@ -23,8 +23,8 @@ public abstract class Mapper<From, To> implements Converter<From, To> {
 
 	public Predicate<From> andThen(final Predicate<? super To> predicate) {
 		return new Predicate<From>() {
-			public boolean test(From a) {
-				return predicate.test(Mapper.this.apply(a));
+			public boolean apply(From a) {
+				return predicate.apply(Mapper.this.apply(a));
 			}
 
 			public String toString() {

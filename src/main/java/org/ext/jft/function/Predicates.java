@@ -9,7 +9,7 @@ public class Predicates {
 	
 	public static <T> Predicate<T> notNullP() {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				return val != null;
 			}
 		};
@@ -17,7 +17,7 @@ public class Predicates {
 
 	public static <T> Predicate<T> equalsP(final T standart) {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				return val.equals(standart);
 			}
 		};
@@ -25,7 +25,7 @@ public class Predicates {
 	
 	public static <T extends Comparable<T>> Predicate<T> moreThanP(final T standart) {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				return val.compareTo(standart) > 0;
 			}
 		};
@@ -33,7 +33,7 @@ public class Predicates {
 	
 	public static <T extends Comparable<T>> Predicate<T> lessThanP(final T standart) {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				return val.compareTo(standart) < 0;
 			}
 		};
@@ -41,7 +41,7 @@ public class Predicates {
 
 	public static <T> Predicate<T> instanceOfP(final Class<?> cl) {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				return cl.isInstance(val);
 			}
 
@@ -53,7 +53,7 @@ public class Predicates {
 
 	public static <T> Predicate<T> elementOfP(final Collection<T> collection) {
 		return new Predicate<T>() {
-			public boolean test(T e) {
+			public boolean apply(T e) {
 				return collection.contains(e);
 			}
 		};
@@ -61,7 +61,7 @@ public class Predicates {
 	
 	public static <T> Predicate<Collection<T>> containsP(final T element) {
 		return new Predicate<Collection<T>>() {
-			public boolean test(Collection<T> collection) {
+			public boolean apply(Collection<T> collection) {
 				return collection.contains(element);
 			}
 		};
@@ -69,9 +69,9 @@ public class Predicates {
 	
 	public static <T> Predicate<T> any(final Predicate<T>... preds) {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				for (Predicate<T> pred : preds) {
-					if (pred.test(val))
+					if (pred.apply(val))
 						return true;
 				}
 				
@@ -82,9 +82,9 @@ public class Predicates {
 	
 	public static <T> Predicate<T> all(final Predicate<T>... preds) {
 		return new Predicate<T>() {
-			public boolean test(T val) {
+			public boolean apply(T val) {
 				for (Predicate<T> pred : preds) {
-					if (!pred.test(val)) {
+					if (!pred.apply(val)) {
 						return false;
 					}
 				}
