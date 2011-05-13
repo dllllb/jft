@@ -10,9 +10,9 @@ import org.ext.jft.tool.AnyType;
  */
 public class Mappers {
 	
-	public static <From> Mapper<From, String> toStringM() {
-		return new Mapper<From, String>() {
-			public String apply(From from) {
+	public static Mapper<Object, String> toStringM() {
+		return new Mapper<Object, String>() {
+			public String apply(Object from) {
 				return from.toString();
 			}
 		};
@@ -52,9 +52,9 @@ public class Mappers {
 		};
 	}
 	
-	public static <F, T> Mapper<F, T> castMapper() {
-		return new Mapper<F, T>() {
-			public T apply(F from) {
+	public static <To> Mapper<Object, To> castMapper() {
+		return new Mapper<Object, To>() {
+			public To apply(Object from) {
 				return AnyType.cast(from);
 			}
 		};

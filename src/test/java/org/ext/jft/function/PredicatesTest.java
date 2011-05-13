@@ -20,7 +20,7 @@ public class PredicatesTest {
 	@Test
 	public void testAnyPred() {
 		@SuppressWarnings("unchecked")
-		Predicate<String> test = any(equalsP("a"), equalsP("b"));
+		Predicate<Object> test = any(equalsP("a"), equalsP("b"));
 		assertTrue(test.apply("a"));
 		assertFalse(test.apply("as"));
 	}
@@ -28,7 +28,7 @@ public class PredicatesTest {
 	@Test
 	public void testAllPred() {
 		@SuppressWarnings("unchecked")
-		Predicate<String> test = all(equalsP("a").not(), equalsP("b").not());
+		Predicate<Object> test = all(equalsP("a").not(), equalsP("b").not());
 		assertTrue(test.apply("as"));
 		assertFalse(test.apply("a"));
 	}

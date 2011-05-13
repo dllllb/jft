@@ -11,9 +11,9 @@ import org.ext.jft.function.Predicate;
  */
 public class FilteredTransformable<E> extends Transformable<E> {
 	private Iterable<E> inner;
-	private Predicate<E> predicate;
+	private Predicate<? super E> predicate;
 	
-	public FilteredTransformable(Iterable<E> inner, Predicate<E> predicate) {
+	public FilteredTransformable(Iterable<E> inner, Predicate<? super E> predicate) {
 		this.inner = inner;
 		this.predicate = predicate;
 	}

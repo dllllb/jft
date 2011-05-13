@@ -23,14 +23,14 @@ public class MappersTest {
 	@Test
 	public void testCastMapper() {
 		ListF<Integer> list = arrayList(1, 2, 3);
-		ListF<Number> nList = list.map(Mappers.<Integer, Number>castMapper()).toArrayList();
+		ListF<Number> nList = list.map(Mappers.<Number>castMapper()).toArrayList();
 		assertElementsEquals(list, nList);
 	}
 	
 	@Test(expected=ClassCastException.class)
 	public void testCastMapperClassCastException() {
 		ListF<Integer> list = arrayList(1, 2, 3);
-		ListF<Double> nList = list.map(Mappers.<Integer, Double>castMapper()).toArrayList();
+		ListF<Double> nList = list.map(Mappers.<Double>castMapper()).toArrayList();
 		@SuppressWarnings("unused")
 		Double el = nList.get(0);
 	}

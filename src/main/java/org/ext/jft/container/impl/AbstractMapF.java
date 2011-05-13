@@ -22,7 +22,7 @@ public abstract class AbstractMapF<K, V> implements MapF<K, V> {
 		return getOpt(key).getOrElse(elseVal);
 	}
 
-	public V getOrElse(K key, Mapper<K, V> factory) {
+	public V getOrElse(K key, Mapper<? super K, V> factory) {
 		return getOpt(key).getOrElse(factory.apply(key));
 	}
 
@@ -35,7 +35,7 @@ public abstract class AbstractMapF<K, V> implements MapF<K, V> {
 		return elseVal;
 	}
 
-	public V getOrElseUpdate(K key, Mapper<K, V> factory) {
+	public V getOrElseUpdate(K key, Mapper<? super K, V> factory) {
 		V res = get(key);
 		if (res != null)
 			return res;
@@ -53,7 +53,7 @@ public abstract class AbstractMapF<K, V> implements MapF<K, V> {
 		return getOpt(key).getOrThrow(message);
 	}
 
-	public <To> ListF<To> map(Combiner<K, V, To> combiner) {
+	public <To> ListF<To> map(Combiner<? super K, ? super V, To> combiner) {
 		ListF<To> res = arrayList();
 
 		for (Entry<K, V> entry : entrySet())

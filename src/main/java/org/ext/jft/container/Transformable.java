@@ -17,11 +17,11 @@ public abstract class Transformable<E> implements Iterable<E> {
 
 	abstract public Iterator<E> iterator();
 	
-	public <To> Transformable<To> map(Mapper<E, To> mapper) {
+	public <To> Transformable<To> map(Mapper<? super E, To> mapper) {
 		return new MappedTransormable<E, To>(this, mapper);
 	}
 
-	public Transformable<E> filter(Predicate<E> predicate) {
+	public Transformable<E> filter(Predicate<? super E> predicate) {
 		return new FilteredTransformable<E>(this, predicate);
 	}
 
