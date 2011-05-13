@@ -18,13 +18,13 @@ public interface MapF<K, V> extends Map<K, V> {
 	
 	V getOrElse(K key, V elseVal);
 	
-	V getOrElse(K key, Mapper<K, V> factory);
+	V getOrElse(K key, Mapper<? super K, V> factory);
 	
 	V getOrElseUpdate(K key, V elseVal);
 	
-	V getOrElseUpdate(K key, Mapper<K, V> factory);
+	V getOrElseUpdate(K key, Mapper<? super K, V> factory);
 	
-	<To> ListF<To> map(Combiner<K, V, To> combiner);
+	<To> ListF<To> map(Combiner<? super K, ? super V, To> combiner);
 	
 	SetF<K> keySet();
 	

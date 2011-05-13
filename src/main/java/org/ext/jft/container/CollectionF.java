@@ -19,14 +19,14 @@ public interface CollectionF<E> extends Collection<E> {
 	 * @param mapper - functor to perform the transformation
 	 * @return the {@link Iterable} structure of mapped elements
 	 */
-	<To> Transformable<To> map(Mapper<E, To> mapper);
+	<To> Transformable<To> map(Mapper<? super E, To> mapper);
 
 	/**
 	 * Operation that produces a subset of the collection with elements that matches predicate
 	 * @param predicate - functor to test if element matches predicate
 	 * @return the {@link Iterable} structure that represents a subset of collection's elements 
 	 */
-	Transformable<E> filter(Predicate<E> predicate);
+	Transformable<E> filter(Predicate<? super E> predicate);
 
 	/**
 	 * Operation that produces single object from the collection's element
@@ -37,9 +37,9 @@ public interface CollectionF<E> extends Collection<E> {
 	 */
 	E reduce(Combiner<E, E, E> combiner, E initial);
 	
-	<R> R aggregate(Combiner<R, E, R> aggregator, R initial);
+	<R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial);
 	
-	<R> R aggregate(Combiner<R, E, R> elementAggregator,
+	<R> R aggregate(Combiner<R, ? super E, R> elementAggregator,
 		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial);
 	
 	/**
@@ -54,20 +54,20 @@ public interface CollectionF<E> extends Collection<E> {
 	 * @param separator - functor that produces a key/value pair for the collection's element
 	 * @return a map of key/value pairs
 	 */
-	<MapKey, MapValue> MapF<MapKey, MapValue> toMap(Mapper<E, Pair<MapKey, MapValue>> separator);
+	<MapKey, MapValue> MapF<MapKey, MapValue> toMap(Mapper<? super E, Pair<MapKey, MapValue>> separator);
 
 	/**
 	 * Produces a dictionary from the collection generating a key for each element of the collection
 	 * @param mapper - functor that produces a key for the element
 	 * @return a map of elements mapped by generated keys
 	 */
-	<Key> MapF<Key, E> toMapMappingToKey(Mapper<E, Key> mapper);
+	<Key> MapF<Key, E> toMapMappingToKey(Mapper<? super E, Key> mapper);
 	
 	/**
 	 * Perform operation for each element of the container
 	 * @param operation - operation to perform
 	 */
-	void forEach(Operation<E> operation);
+	void forEach(Operation<? super E> operation);
 	
 	IteratorF<E> iterator();
 }

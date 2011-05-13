@@ -10,9 +10,9 @@ import org.ext.jft.function.Mapper;
  */
 public class MappedTransormable<F, T> extends Transformable<T> {
 	private Iterable<F> inner;
-	private Mapper<F, T> mapper;
+	private Mapper<? super F, T> mapper;
 	
-	public MappedTransormable(Iterable<F> inner, Mapper<F, T> mapper) {
+	public MappedTransormable(Iterable<F> inner, Mapper<? super F, T> mapper) {
 		this.inner = inner;
 		this.mapper = mapper;
 	}
@@ -36,7 +36,7 @@ public class MappedTransormable<F, T> extends Transformable<T> {
 	}
 	
 	@Override
-	public <To> Transformable<To> map(Mapper<T, To> mapper) {
+	public <To> Transformable<To> map(Mapper<? super T, To> mapper) {
 		return new MappedTransormable<F, To>(inner, this.mapper.andThen(mapper));
 	}
 }

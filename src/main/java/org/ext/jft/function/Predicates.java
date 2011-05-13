@@ -7,17 +7,17 @@ import java.util.Collection;
  */
 public class Predicates {
 	
-	public static <T> Predicate<T> notNullP() {
-		return new Predicate<T>() {
-			public boolean apply(T val) {
+	public static Predicate<Object> notNullP() {
+		return new Predicate<Object>() {
+			public boolean apply(Object val) {
 				return val != null;
 			}
 		};
 	}
 
-	public static <T> Predicate<T> equalsP(final T standart) {
-		return new Predicate<T>() {
-			public boolean apply(T val) {
+	public static Predicate<Object> equalsP(final Object standart) {
+		return new Predicate<Object>() {
+			public boolean apply(Object val) {
 				return val.equals(standart);
 			}
 		};
@@ -39,9 +39,9 @@ public class Predicates {
 		};
 	}
 
-	public static <T> Predicate<T> instanceOfP(final Class<?> cl) {
-		return new Predicate<T>() {
-			public boolean apply(T val) {
+	public static Predicate<Object> instanceOfP(final Class<?> cl) {
+		return new Predicate<Object>() {
+			public boolean apply(Object val) {
 				return cl.isInstance(val);
 			}
 

@@ -26,7 +26,7 @@ public abstract class AbstractListF<E> extends AbstractCollectionF<E> implements
 		return getFront().getOrThrow(ex);
 	}
 
-	public <B extends Comparable<Object>> ListF<E> sortBy(final Mapper<E, B> mapper) {
+	public <B extends Comparable<Object>> ListF<E> sortBy(final Mapper<? super E, B> mapper) {
 		ListF<E> res = arrayList(this);
 		Collections.sort(res, new Comparator<E>() {
 			public int compare(E o1, E o2) {

@@ -15,7 +15,7 @@ public interface ListF<E> extends List<E>, CollectionF<E> {
 	
 	Option<E> getFront();
 	
-	<B extends Comparable<Object>> ListF<E> sortBy(Mapper<E, B> mapper);
+	<B extends Comparable<Object>> ListF<E> sortBy(Mapper<? super E, B> mapper);
 	 
 	ListF<E> subList(int fromIndex, int toIndex);
 }

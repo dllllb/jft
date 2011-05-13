@@ -20,11 +20,11 @@ import org.ext.jft.function.Separator;
  */
 public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	
-	public <To> Transformable<To> map(Mapper<E, To> mapper) {
+	public <To> Transformable<To> map(Mapper<? super E, To> mapper) {
 		return new MappedTransormable<E, To>(this, mapper);
 	}
 	
-	public Transformable<E> filter(Predicate<E> predicate) {
+	public Transformable<E> filter(Predicate<? super E> predicate) {
 		return new FilteredTransformable<E>(this, predicate);
 	}
 	
@@ -36,7 +36,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 		return res;
 	}
 	
-	public <R> R aggregate(Combiner<R, E, R> aggregator, R initial) {
+	public <R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial) {
 		R res = initial;
 		for (E val : this) {
 			res = aggregator.apply(res, val);
@@ -45,7 +45,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	}
 	
 	@Override
-	public <R> R aggregate(Combiner<R, E, R> elementAggregator,
+	public <R> R aggregate(Combiner<R, ? super E, R> elementAggregator,
 		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial)
 	{
 		R res = initial.produce();
@@ -56,7 +56,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	}
 	
 	public <MapKey, MapValue> MapF<MapKey, MapValue> toMap(
-			Mapper<E, Pair<MapKey, MapValue>> separator) {
+			Mapper<? super E, Pair<MapKey, MapValue>> separator) {
 		MapF<MapKey, MapValue> map = hashMap();
 
 		for (E val : this) {
@@ -67,7 +67,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 		return map;
 	}
 
-	public <Key> MapF<Key, E> toMapMappingToKey(final Mapper<E, Key> mapper) {
+	public <Key> MapF<Key, E> toMapMappingToKey(final Mapper<? super E, Key> mapper) {
 		Separator<E, Key, E> separator = new Separator<E, Key, E>() {
 			public Pair<Key, E> apply(E from) {
 				return Pair.pair(mapper.apply(from), from);
@@ -81,7 +81,7 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 		return hashSet(this);
 	}
 	
-	public void forEach(Operation<E> operation) {
+	public void forEach(Operation<? super E> operation) {
 		for (E element : this) {
 			operation.perform(element);
 		}
