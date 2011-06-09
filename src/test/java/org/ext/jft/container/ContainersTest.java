@@ -93,6 +93,7 @@ public class ContainersTest {
 		assertEquals(Integer.valueOf(6), map.get(3));
 	}
 	
+	@Test
 	public void testFlatten() {
 		@SuppressWarnings("unchecked")
 		ListF<ListF<Integer>> lst = arrayList(arrayList(1,2,3), arrayList(4,5));
