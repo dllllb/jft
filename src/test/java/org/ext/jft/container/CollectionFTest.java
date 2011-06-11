@@ -67,4 +67,17 @@ public class CollectionFTest {
 		
 		assertElementsEquals(arrayList(1, 2), res);
 	}
+
+    @Test
+	public void testZipWith() {
+		ListF<Integer> first = arrayList(1, 2, 3, 4);
+		ListF<Integer> second = arrayList(4, 5, 6);
+
+		ListF<Pair<Integer, Integer>> res = first.zipWith(second).toArrayList();
+		assertEquals(3, res.size());
+		Map<Integer, Integer> map = res.toMap(Mappers.<Pair<Integer, Integer>>selfMapper());
+
+		assertEquals(Integer.valueOf(4), map.get(1));
+		assertEquals(Integer.valueOf(6), map.get(3));
+	}
 }

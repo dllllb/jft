@@ -25,8 +25,12 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	public Transformable<E> filter(Predicate<? super E> predicate) {
 		return new FilteredTransformable<E>(this, predicate);
 	}
-	
-	public E reduce(Combiner<E, E, E> combiner, E initial) {
+
+    public <T> Transformable<Pair<E, T>> zipWith(Iterable<T> second) {
+        return new ZippingTransformable<E, T>(this, second);
+    }
+
+    public E reduce(Combiner<E, E, E> combiner, E initial) {
 		E res = initial;
 		for (E val : this) {
 			res = combiner.apply(res, val);

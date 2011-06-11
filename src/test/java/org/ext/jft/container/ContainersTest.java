@@ -81,19 +81,6 @@ public class ContainersTest {
 	}
 	
 	@Test
-	public void testZipIterable() {
-		ListF<Integer> first = arrayList(1, 2, 3, 4);
-		ListF<Integer> second = arrayList(4, 5, 6);
-		
-		ListF<Pair<Integer, Integer>> list = arrayList(Containers.zipIterable(first, second));
-		assertEquals(3, list.size());
-		Map<Integer, Integer> map = list.toMap(Mappers.<Pair<Integer, Integer>>selfMapper());
-		
-		assertEquals(Integer.valueOf(4), map.get(1));
-		assertEquals(Integer.valueOf(6), map.get(3));
-	}
-	
-	@Test
 	public void testFlatten() {
 		@SuppressWarnings("unchecked")
 		ListF<ListF<Integer>> lst = arrayList(arrayList(1,2,3), arrayList(4,5));

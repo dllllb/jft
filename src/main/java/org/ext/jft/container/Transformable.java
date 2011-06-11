@@ -43,4 +43,6 @@ public interface Transformable<E> extends Iterable<E> {
 	public ListF<E> toLinkedList();
 	
 	public SetF<E> toHashSet();
+
+    public <T> Transformable<Pair<E,T>> zipWith(Iterable<T> second);
 }
