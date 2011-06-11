@@ -8,7 +8,7 @@ import org.ext.jft.function.Mapper;
 /**
  * @author Dmitri Babaev
  */
-public class MappedTransformable<F, T> extends DecoratingTransformable<T> {
+public class MappedTransformable<F, T> extends AbstractTransformable<T> {
 	private Iterable<F> inner;
 	private Mapper<? super F, T> mapper;
 	

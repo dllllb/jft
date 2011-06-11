@@ -15,10 +15,8 @@ import static org.ext.jft.container.Containers.*;
 /**
  * @author Dmitri Babaev
  */
-public abstract class DecoratingTransformable<E> implements Transformable<E> {
+public abstract class AbstractTransformable<E> implements Transformable<E> {
 
-	abstract public Iterator<E> iterator();
-	
 	public <To> Transformable<To> map(Mapper<? super E, To> mapper) {
 		return new MappedTransformable<E, To>(this, mapper);
 	}

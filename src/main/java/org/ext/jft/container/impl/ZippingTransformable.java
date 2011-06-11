@@ -4,7 +4,7 @@ import org.ext.jft.container.Pair;
 
 import java.util.Iterator;
 
-public class ZippingTransformable<F,S> extends DecoratingTransformable<Pair<F,S>> {
+public class ZippingTransformable<F,S> extends AbstractTransformable<Pair<F,S>> {
     private Iterable<F> first;
     private Iterable<S> second;
 

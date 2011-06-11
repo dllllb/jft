@@ -3,13 +3,12 @@ package org.ext.jft.container.impl;
 import java.util.Iterator;
 
 import org.ext.jft.container.Option;
-import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Predicate;
 
 /**
  * @author Dmitri Babaev
  */
-public class FilteredTransformable<E> extends DecoratingTransformable<E> {
+public class FilteredTransformable<E> extends AbstractTransformable<E> {
 	private Iterable<E> inner;
 	private Predicate<? super E> predicate;
 	

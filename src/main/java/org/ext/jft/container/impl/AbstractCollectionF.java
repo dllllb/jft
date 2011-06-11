@@ -16,27 +16,7 @@ import org.ext.jft.function.Separator;
 /**
  * @author Dmitri Babaev
  */
-public abstract class AbstractCollectionF<E> implements CollectionF<E> {
-	
-	public <To> Transformable<To> map(Mapper<? super E, To> mapper) {
-		return new MappedTransformable<E, To>(this, mapper);
-	}
-	
-	public Transformable<E> filter(Predicate<? super E> predicate) {
-		return new FilteredTransformable<E>(this, predicate);
-	}
-
-    public <T> Transformable<Pair<E, T>> zipWith(Iterable<T> second) {
-        return new ZippingTransformable<E, T>(this, second);
-    }
-
-    public E reduce(Combiner<E, E, E> combiner, E initial) {
-		E res = initial;
-		for (E val : this) {
-			res = combiner.apply(res, val);
-		}
-		return res;
-	}
+public abstract class AbstractCollectionF<E> extends AbstractTransformable<E> implements CollectionF<E> {
 	
 	public <R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial) {
 		R res = initial;
@@ -88,19 +68,4 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 			operation.perform(element);
 		}
 	}
-
-    @Override
-    public ListF<E> toArrayList() {
-        return arrayList(this);
-    }
-
-    @Override
-    public ListF<E> toLinkedList() {
-        return linkedList(this);
-    }
-
-    @Override
-    public SetF<E> toHashSet() {
-        return hashSet(this);
-    }
 }
