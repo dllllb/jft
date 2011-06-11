@@ -55,7 +55,7 @@ public class Mappers {
 	public static <To> Mapper<Object, To> castMapper() {
 		return new Mapper<Object, To>() {
 			public To apply(Object from) {
-				return AnyType.cast(from);
+				return AnyType.<To>cast(from);
 			}
 		};
 	}

@@ -65,7 +65,7 @@ public class ContainersTest {
 	
 	@Test
 	public void testIterableIterator() {
-		ListF<Integer> expected = arrayList(1, 2, 3);
+		CollectionF<Integer> expected = arrayList(1, 2, 3);
 		ListF<Integer> actual = arrayList(Containers.iterable(expected.iterator()));
 		
 		assertElementsEquals(expected, actual);
@@ -74,7 +74,7 @@ public class ContainersTest {
 
 	@Test
 	public void testIteratorEnumerator() {
-		ListF<Integer> expected = arrayList(1, 2, 3);
+		CollectionF<Integer> expected = arrayList(1, 2, 3);
 		ListF<Integer> actual = arrayList(Containers.iterable(Containers.enumerator(expected.iterator())));
 		
 		assertElementsEquals(expected, actual);

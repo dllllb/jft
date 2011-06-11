@@ -8,11 +8,11 @@ import org.ext.jft.function.Mapper;
 /**
  * @author Dmitri Babaev
  */
-public class MappedTransormable<F, T> extends Transformable<T> {
+public class MappedTransformable<F, T> extends DecoratingTransformable<T> {
 	private Iterable<F> inner;
 	private Mapper<? super F, T> mapper;
 	
-	public MappedTransormable(Iterable<F> inner, Mapper<? super F, T> mapper) {
+	public MappedTransformable(Iterable<F> inner, Mapper<? super F, T> mapper) {
 		this.inner = inner;
 		this.mapper = mapper;
 	}
@@ -37,6 +37,6 @@ public class MappedTransormable<F, T> extends Transformable<T> {
 	
 	@Override
 	public <To> Transformable<To> map(Mapper<? super T, To> mapper) {
-		return new MappedTransormable<F, To>(inner, this.mapper.andThen(mapper));
+		return new MappedTransformable<F, To>(inner, this.mapper.andThen(mapper));
 	}
 }
