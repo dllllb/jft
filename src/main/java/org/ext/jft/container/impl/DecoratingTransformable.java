@@ -1,6 +1,7 @@
 package org.ext.jft.container.impl;
 
 import org.ext.jft.container.ListF;
+import org.ext.jft.container.Pair;
 import org.ext.jft.container.SetF;
 import org.ext.jft.container.Transformable;
 import org.ext.jft.function.Combiner;
@@ -33,8 +34,12 @@ public abstract class DecoratingTransformable<E> implements Transformable<E> {
 		}
 		return res;
 	}
-	
-	public ListF<E> toArrayList() {
+
+    public <T> Transformable<Pair<E, T>> zipWith(Iterable<T> second) {
+        return new ZippingTransformable<E, T>(this, second);
+    }
+
+    public ListF<E> toArrayList() {
 		return arrayList(this);
 	}
 	
