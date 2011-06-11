@@ -2,12 +2,10 @@ package org.ext.jft.container.impl;
 
 import static org.ext.jft.container.Containers.hashMap;
 import static org.ext.jft.container.Containers.hashSet;
+import static org.ext.jft.container.Containers.arrayList;
+import static org.ext.jft.container.Containers.linkedList;
 
-import org.ext.jft.container.CollectionF;
-import org.ext.jft.container.MapF;
-import org.ext.jft.container.Pair;
-import org.ext.jft.container.SetF;
-import org.ext.jft.container.Transformable;
+import org.ext.jft.container.*;
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Factory;
 import org.ext.jft.function.Mapper;
@@ -21,7 +19,7 @@ import org.ext.jft.function.Separator;
 public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 	
 	public <To> Transformable<To> map(Mapper<? super E, To> mapper) {
-		return new MappedTransormable<E, To>(this, mapper);
+		return new MappedTransformable<E, To>(this, mapper);
 	}
 	
 	public Transformable<E> filter(Predicate<? super E> predicate) {
@@ -86,4 +84,19 @@ public abstract class AbstractCollectionF<E> implements CollectionF<E> {
 			operation.perform(element);
 		}
 	}
+
+    @Override
+    public ListF<E> toArrayList() {
+        return arrayList(this);
+    }
+
+    @Override
+    public ListF<E> toLinkedList() {
+        return linkedList(this);
+    }
+
+    @Override
+    public SetF<E> toHashSet() {
+        return hashSet(this);
+    }
 }

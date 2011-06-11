@@ -5,7 +5,7 @@ import static org.ext.jft.container.Containers.*;
 import java.util.Iterator;
 
 import org.ext.jft.container.impl.FilteredTransformable;
-import org.ext.jft.container.impl.MappedTransormable;
+import org.ext.jft.container.impl.MappedTransformable;
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
 import org.ext.jft.function.Predicate;
@@ -13,35 +13,34 @@ import org.ext.jft.function.Predicate;
 /**
  * @author Dmitri Babaev
  */
-public abstract class Transformable<E> implements Iterable<E> {
+public interface Transformable<E> extends Iterable<E> {
 
-	abstract public Iterator<E> iterator();
-	
-	public <To> Transformable<To> map(Mapper<? super E, To> mapper) {
-		return new MappedTransormable<E, To>(this, mapper);
-	}
+    /**
+	 * Operation that transforms each element of the collection to another object
+	 * @param mapper - functor to perform the transformation
+	 * @return the {@link Iterable} structure of mapped elements
+	 */
+	public <To> Transformable<To> map(Mapper<? super E, To> mapper);
 
-	public Transformable<E> filter(Predicate<? super E> predicate) {
-		return new FilteredTransformable<E>(this, predicate);
-	}
+    /**
+	 * Operation that produces a subset of the collection with elements that matches predicate
+	 * @param predicate - functor to test if element matches predicate
+	 * @return the {@link Iterable} structure that represents a subset of collection's elements
+	 */
+	public Transformable<E> filter(Predicate<? super E> predicate);
 
-	public E reduce(Combiner<E, E, E> combiner, E initial) {
-		E res = initial;
-		for (E val : this) {
-			res = combiner.apply(res, val);
-		}
-		return res;
-	}
+    /**
+	 * Operation that produces single object from the collection's element
+	 * @param combiner - functor that produces a new resulting value
+	 * from the previous resulting value and an element of the collection
+	 * @param initial - initial resulting value before the reduce operation
+	 * @return result of the reduce
+	 */
+	public E reduce(Combiner<E, E, E> combiner, E initial);
 	
-	public ListF<E> toArrayList() {
-		return arrayList(this);
-	}
+	public ListF<E> toArrayList();
 	
-	public ListF<E> toLinkedList() {
-		return linkedList(this);
-	}
+	public ListF<E> toLinkedList();
 	
-	public SetF<E> toHashSet() {
-		return hashSet(this);
-	}
+	public SetF<E> toHashSet();
 }

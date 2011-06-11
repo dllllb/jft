@@ -9,7 +9,7 @@ import org.ext.jft.function.Predicate;
 /**
  * @author Dmitri Babaev
  */
-public class FilteredTransformable<E> extends Transformable<E> {
+public class FilteredTransformable<E> extends DecoratingTransformable<E> {
 	private Iterable<E> inner;
 	private Predicate<? super E> predicate;
 	

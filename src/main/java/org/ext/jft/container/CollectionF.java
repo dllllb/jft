@@ -12,30 +12,7 @@ import org.ext.jft.function.Predicate;
  * Extended {@link Collection} interface that provides extended features to the standard collections
  * @author Dmitri Babaev
  */
-public interface CollectionF<E> extends Collection<E> {
-	
-	/**
-	 * Operation that transforms each element of the collection to another object  
-	 * @param mapper - functor to perform the transformation
-	 * @return the {@link Iterable} structure of mapped elements
-	 */
-	<To> Transformable<To> map(Mapper<? super E, To> mapper);
-
-	/**
-	 * Operation that produces a subset of the collection with elements that matches predicate
-	 * @param predicate - functor to test if element matches predicate
-	 * @return the {@link Iterable} structure that represents a subset of collection's elements 
-	 */
-	Transformable<E> filter(Predicate<? super E> predicate);
-
-	/**
-	 * Operation that produces single object from the collection's element
-	 * @param combiner - functor that produces a new resulting value
-	 * from the previous resulting value and an element of the collection
-	 * @param initial - initial resulting value before the reduce operation
-	 * @return result of the reduce
-	 */
-	E reduce(Combiner<E, E, E> combiner, E initial);
+public interface CollectionF<E> extends Collection<E>, Transformable<E> {
 	
 	<R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial);
 	
