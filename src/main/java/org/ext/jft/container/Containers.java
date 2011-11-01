@@ -100,10 +100,18 @@ public class Containers {
 	public static <K, V> MapF<K, V> hashMap() {
 		return decorate(new HashMap<K, V>());
 	}
+
+    public static <K, V> MapF<K, V> hashMap(Map<K,V> entries) {
+		return decorate(new HashMap<K, V>(entries));
+	}
 	
 	public static <K, V> MapF<K, V> treeMap() {
 		return decorate(new TreeMap<K, V>());
 	}
+
+    public static <K, V> MapF<K, V> treeMap(Map<K,V> entries) {
+        return decorate(new TreeMap<K, V>(entries));
+    }
 	
 	static public <K, V> MapF<K, V> hashMap(Pair<K, V>... pairs) {
 		MapF<K, V> res = hashMap();
@@ -124,7 +132,7 @@ public class Containers {
 	
 	public static <T> Iterator<T> iterator(final Enumerator<T> enumerator) {
 		return new Iterator<T>() {
-			Option<T> next = enumerator.getNext();;
+			Option<T> next = enumerator.getNext();
 			
 			public boolean hasNext() {
 				return next.isDefined();
