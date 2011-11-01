@@ -10,7 +10,7 @@ import static org.ext.jft.container.Containers.treeMap;
 import static org.ext.jft.container.Pair.pair;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.ext.jft.container.MapBuilder.entry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,10 +45,8 @@ public class ContainersTest {
 		@SuppressWarnings("unchecked")
 		Map<Integer, String> map = hashMap(pair(1, "a"), pair(2, "b"));
 		
-		Map<Integer, String> control = new HashMap<Integer, String>();
-		control.put(1, "a");
-		control.put(2, "b");
-		
+		Map<Integer, String> control = entry(1, "a").and(2, "b").asHashMap();
+
 		assertElementsEquals(control.entrySet(), map.entrySet());
 	}
 	
