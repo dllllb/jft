@@ -113,15 +113,6 @@ public class Containers {
         return decorate(new TreeMap<K, V>(entries));
     }
 	
-	static public <K, V> MapF<K, V> hashMap(Pair<K, V>... pairs) {
-		MapF<K, V> res = hashMap();
-		
-		for (Pair<K, V> pair : pairs) {
-			res.put(pair.first(), pair.second());
-		}
-		return res;
-	}
-	
 	static public <T> T[] array(T... values) {
 		return values;
 	}
