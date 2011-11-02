@@ -42,12 +42,7 @@ public class ContainersTest {
 	
 	@Test
 	public void testHashMap() {
-		@SuppressWarnings("unchecked")
-		Map<Integer, String> map = hashMap(pair(1, "a"), pair(2, "b"));
-		
-		Map<Integer, String> control = entry(1, "a").and(2, "b").asHashMap();
-
-		assertElementsEquals(control.entrySet(), map.entrySet());
+		assertElementsEquals(arrayList(), hashMap().values());
 	}
 	
 	@Test

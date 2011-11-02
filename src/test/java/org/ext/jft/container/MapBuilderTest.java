@@ -2,19 +2,20 @@ package org.ext.jft.container;
 
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import static org.ext.jft.container.Containers.hashMap;
 import static org.ext.jft.container.MapBuilder.entry;
-import static org.ext.jft.container.Pair.pair;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 
 /**
  * @author Dmitri Babaev
  */
 public class MapBuilderTest {
-    @SuppressWarnings({"unchecked"})
-    private Map<Integer, String> control = hashMap(pair(1, "a"), pair(2, "b"));
+    private Map<Integer, String> control = new HashMap<Integer, String>() {{
+        put(1, "a");
+        put(2, "b");
+    }};
 
     @Test
     public void testAsHashMap() {
