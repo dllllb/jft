@@ -6,7 +6,7 @@ import org.ext.jft.container.Pair;
  * @author Dmitri Babaev
  */
 public abstract class Combiner<FromLeft, FromRight, To> {
-	public abstract To apply(FromLeft fromLeft, FromRight fromRight);
+	public abstract To apply(FromLeft left, FromRight right);
 	
 	public Mapper<Pair<FromLeft, FromRight>, To> asMapper() {
 		return new Mapper<Pair<FromLeft,FromRight>, To>() {
