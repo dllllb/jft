@@ -42,8 +42,7 @@ public class Genetic {
                             public E next() {
                                 E left = it.next();
                                 E right = generation.get(random.nextInt(generation.size()));
-                                E res;
-                                res = breeder.descend(left, right, random);
+                                E res = breeder.descend(left, right, random);
                                 return res;
                             }
 

@@ -13,11 +13,11 @@ import org.ext.jft.function.Combiner;
 
 public class CountSort {
 	static public <E> ListF<E> countSort(ListF<E> old) {
-		final MapF<E, Integer> map = old.aggregate(new Combiner<MapF<E, Integer>, E, MapF<E, Integer>>() {
+		final MapF<E, Integer> map = old.reduce(new Combiner<MapF<E, Integer>, E, MapF<E, Integer>>() {
 			public MapF<E, Integer> apply(MapF<E, Integer> count, E el) {
-				count.put(el, count.getOrElse(el, 0).intValue()+1);
+				count.put(el, count.getOrElse(el, 0)+1);
 				return count;
-			};
+			}
 		}, Containers.<E, Integer>treeMap());
 		
 		ListF<E> res = arrayList(flatten(map.map(new Combiner<E, Integer, Iterable<E>>() {
@@ -33,7 +33,7 @@ public class CountSort {
 							return Option.none();
 					}
 				});
-			};
+			}
 		})));
 		
 		return res;

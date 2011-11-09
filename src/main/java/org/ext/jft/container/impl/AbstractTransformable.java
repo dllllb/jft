@@ -25,8 +25,8 @@ public abstract class AbstractTransformable<E> implements Transformable<E> {
 		return new FilteredTransformable<E>(this, predicate);
 	}
 
-	public E reduce(Combiner<E, E, E> combiner, E initial) {
-		E res = initial;
+	public <R> R reduce(Combiner<R, ? super E, R> combiner, R initial) {
+		R res = initial;
 		for (E val : this) {
 			res = combiner.apply(res, val);
 		}
