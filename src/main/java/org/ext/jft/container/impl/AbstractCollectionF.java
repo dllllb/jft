@@ -18,15 +18,6 @@ import org.ext.jft.function.Separator;
  */
 public abstract class AbstractCollectionF<E> extends AbstractTransformable<E> implements CollectionF<E> {
 
-    @Override
-	public <R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial) {
-		R res = initial;
-		for (E val : this) {
-			res = aggregator.apply(res, val);
-		}
-		return res;
-	}
-	
 	public <MapKey, MapValue> MapF<MapKey, MapValue> toMap(
 			Mapper<? super E, Pair<MapKey, MapValue>> separator) {
 		MapF<MapKey, MapValue> map = hashMap();

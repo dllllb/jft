@@ -36,7 +36,7 @@ public interface Transformable<E> extends Iterable<E> {
 	 * @param initial - initial resulting value before the reduce operation
 	 * @return result of the reduce
 	 */
-	public E reduce(Combiner<E, E, E> combiner, E initial);
+	public <R> R reduce(Combiner<R, ? super E, R> combiner, R initial);
 	
 	public ListF<E> toArrayList();
 	

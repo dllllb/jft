@@ -42,8 +42,8 @@ public class CollectionFTest {
 				return val % 2 == 0;
 			}
 		}).reduce(new Combiner<Integer, Integer, Integer>() {
-			public Integer apply(Integer fromLeft, Integer fromRight) {
-				return fromLeft+fromRight;
+			public Integer apply(Integer left, Integer right) {
+				return left+right;
 			}
 		}, 0);
 		

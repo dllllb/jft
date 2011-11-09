@@ -14,8 +14,6 @@ import org.ext.jft.function.Predicate;
  */
 public interface CollectionF<E> extends Collection<E>, Transformable<E> {
 
-	<R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial);
-	
 	/**
 	 * Produces a set of unique objects from the collection's elements using standard {@code equals} operation
 	 * to find duplicate elements
