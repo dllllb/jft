@@ -17,22 +17,12 @@ import org.ext.jft.function.Separator;
  * @author Dmitri Babaev
  */
 public abstract class AbstractCollectionF<E> extends AbstractTransformable<E> implements CollectionF<E> {
-	
+
+    @Override
 	public <R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial) {
 		R res = initial;
 		for (E val : this) {
 			res = aggregator.apply(res, val);
-		}
-		return res;
-	}
-	
-	@Override
-	public <R> R aggregate(Combiner<R, ? super E, R> elementAggregator,
-		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial)
-	{
-		R res = initial.produce();
-		for (E val : this) {
-			res = elementAggregator.apply(res, val);
 		}
 		return res;
 	}

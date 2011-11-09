@@ -13,11 +13,8 @@ import org.ext.jft.function.Predicate;
  * @author Dmitri Babaev
  */
 public interface CollectionF<E> extends Collection<E>, Transformable<E> {
-	
+
 	<R> R aggregate(Combiner<R, ? super E, R> aggregator, R initial);
-	
-	<R> R aggregate(Combiner<R, ? super E, R> elementAggregator,
-		Combiner<R, R, R> intermediateResultAggregator, Factory<R> initial);
 	
 	/**
 	 * Produces a set of unique objects from the collection's elements using standard {@code equals} operation
