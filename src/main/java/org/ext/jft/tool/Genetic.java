@@ -32,24 +32,24 @@ public class Genetic {
     static public <E> Iterable<E> breed(final List<E> generation, final Breeder<E> breeder, final Random random) {
         return new Iterable<E>() {
             public Iterator<E> iterator() {
-                    return new Iterator<E>() {
-                            Iterator<E> it = generation.iterator();
+                return new Iterator<E>() {
+                    Iterator<E> it = generation.iterator();
 
-                            public boolean hasNext() {
-                                    return it.hasNext();
-                            }
+                    public boolean hasNext() {
+                        return it.hasNext();
+                    }
 
-                            public E next() {
-                                E left = it.next();
-                                E right = generation.get(random.nextInt(generation.size()));
-                                E res = breeder.descend(left, right, random);
-                                return res;
-                            }
+                    public E next() {
+                        E left = it.next();
+                        E right = generation.get(random.nextInt(generation.size()));
+                        E res = breeder.descend(left, right, random);
+                        return res;
+                    }
 
-                            public void remove() {
-                                    throw new UnsupportedOperationException();
-                            }
-                    };
+                    public void remove() {
+                        throw new UnsupportedOperationException();
+                    }
+                };
             }
         };
     }

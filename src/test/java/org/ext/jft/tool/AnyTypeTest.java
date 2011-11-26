@@ -11,11 +11,11 @@ import org.junit.Test;
  * @author Dmitri Babaev
  */
 public class AnyTypeTest {
-	
-	@Test
-	public void testCast() {
-		Object a = new ArrayList<Integer>(arrayList(1, 2, 3));
-		ArrayList<Integer> b = AnyType.cast(a);
-		assertEquals(a, b);
-	}
+
+    @Test
+    public void testCast() {
+        Object a = new ArrayList<Integer>(arrayList(1, 2, 3));
+        ArrayList<Integer> b = AnyType.cast(a);
+        assertEquals(a, b);
+    }
 }

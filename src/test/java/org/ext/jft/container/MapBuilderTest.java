@@ -20,12 +20,12 @@ public class MapBuilderTest {
     @Test
     public void testAsHashMap() {
         Map<Integer, String> map = entry(1, "a").and(2, "b").asHashMap();
-		assertElementsEquals(control.entrySet(), map.entrySet());
+        assertElementsEquals(control.entrySet(), map.entrySet());
     }
 
     @Test
     public void testAsTreeMap() {
         Map<Integer, String> map = entry(1, "a").and(2, "b").asTreeMap();
-		assertElementsEquals(control.entrySet(), map.entrySet());
+        assertElementsEquals(control.entrySet(), map.entrySet());
     }
 }

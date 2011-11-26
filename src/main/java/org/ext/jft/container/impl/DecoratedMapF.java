@@ -11,72 +11,72 @@ import org.ext.jft.container.SetF;
  * @author Dmitri Babaev
  */
 public class DecoratedMapF<K, V> extends AbstractMapF<K, V> {
-	private Map<K, V> inner;
-	
-	public DecoratedMapF(Map<K, V> map) {
-		this.inner = map;
-	}
+    private Map<K, V> inner;
 
-	public void clear() {
-		inner.clear();
-	}
+    public DecoratedMapF(Map<K, V> map) {
+        this.inner = map;
+    }
 
-	public boolean containsKey(Object key) {
-		return inner.containsKey(key);
-	}
+    public void clear() {
+        inner.clear();
+    }
 
-	public boolean containsValue(Object value) {
-		return inner.containsValue(value);
-	}
+    public boolean containsKey(Object key) {
+        return inner.containsKey(key);
+    }
 
-	public SetF<Entry<K, V>> entrySet() {
-		return decorate(inner.entrySet());
-	}
+    public boolean containsValue(Object value) {
+        return inner.containsValue(value);
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return inner.equals(o);
-	}
+    public SetF<Entry<K, V>> entrySet() {
+        return decorate(inner.entrySet());
+    }
 
-	public V get(Object key) {
-		return inner.get(key);
-	}
+    @Override
+    public boolean equals(Object o) {
+        return inner.equals(o);
+    }
 
-	@Override
-	public int hashCode() {
-		return inner.hashCode();
-	}
+    public V get(Object key) {
+        return inner.get(key);
+    }
 
-	public boolean isEmpty() {
-		return inner.isEmpty();
-	}
+    @Override
+    public int hashCode() {
+        return inner.hashCode();
+    }
 
-	public SetF<K> keySet() {
-		return decorate(inner.keySet());
-	}
+    public boolean isEmpty() {
+        return inner.isEmpty();
+    }
 
-	public V put(K key, V value) {
-		return inner.put(key, value);
-	}
+    public SetF<K> keySet() {
+        return decorate(inner.keySet());
+    }
 
-	public void putAll(Map<? extends K, ? extends V> m) {
-		inner.putAll(m);
-	}
+    public V put(K key, V value) {
+        return inner.put(key, value);
+    }
 
-	public V remove(Object key) {
-		return inner.remove(key);
-	}
+    public void putAll(Map<? extends K, ? extends V> m) {
+        inner.putAll(m);
+    }
 
-	public int size() {
-		return inner.size();
-	}
+    public V remove(Object key) {
+        return inner.remove(key);
+    }
 
-	public CollectionF<V> values() {
-		return decorate(inner.values());
-	}
-	
-	@Override
-	public String toString() {
-		return inner.toString();
-	}
+    public int size() {
+        return inner.size();
+    }
+
+    public CollectionF<V> values() {
+        return decorate(inner.values());
+    }
+
+    @Override
+    public String toString() {
+        return inner.toString();
+    }
 }

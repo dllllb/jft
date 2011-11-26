@@ -9,30 +9,30 @@ import org.ext.jft.container.Option;
  * @author Dmitri Babaev
  */
 public class DecoratedIteratorF<E> implements IteratorF<E> {
-	private Iterator<E> inner;
-	
-	public DecoratedIteratorF(Iterator<E> it) {
-		inner = it;
-	}
+    private Iterator<E> inner;
 
-	@Override
-	public boolean hasNext() {
-		return inner.hasNext();
-	}
+    public DecoratedIteratorF(Iterator<E> it) {
+        inner = it;
+    }
 
-	@Override
-	public E next() {
-		return inner.next();
-	}
+    @Override
+    public boolean hasNext() {
+        return inner.hasNext();
+    }
 
-	@Override
-	public void remove() {
-		inner.remove();
-	}
+    @Override
+    public E next() {
+        return inner.next();
+    }
 
-	@Override
-	public Option<E> getOpt() {
-		return inner.hasNext() ? Option.some(inner.next()) : Option.<E>none();
-	}
+    @Override
+    public void remove() {
+        inner.remove();
+    }
+
+    @Override
+    public Option<E> getOpt() {
+        return inner.hasNext() ? Option.some(inner.next()) : Option.<E>none();
+    }
 
 }

@@ -30,11 +30,11 @@ public class GeneticTest {
         assertEquals(5, res.size());
 
         Integer sum = res.reduce(new Combiner<Integer, Integer, Integer>() {
-            @Override
-            public Integer apply(Integer left, Integer right) {
-                return left + right;
-            }
-        }, 0);
+                    @Override
+                    public Integer apply(Integer left, Integer right) {
+                        return left + right;
+                    }
+                }, 0);
 
         assertTrue(sum >= 20);
         assertTrue(sum <= 32);
