@@ -14,11 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.ext.jft.container.impl.DecoratedCollectionF;
-import org.ext.jft.container.impl.DecoratedIteratorF;
-import org.ext.jft.container.impl.DecoratedListF;
-import org.ext.jft.container.impl.DecoratedMapF;
-import org.ext.jft.container.impl.DecoratedSetF;
+import org.ext.jft.container.impl.*;
 
 /**
  * @author Dmitri Babaev
@@ -141,15 +137,15 @@ public class Containers {
         };
     }
 
-    public static <T> Iterable<T> iterable(final Iterator<T> it) {
-        return new Iterable<T>() {
+    public static <T> Transformable<T> iterable(final Iterator<T> it) {
+        return new DecoratedTransformable<T>(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return it;
             }
-        };
+        });
     }
 
-    public static <T> Iterable<T> iterable(Enumerator<T> enumerator) {
+    public static <T> Transformable<T> iterable(Enumerator<T> enumerator) {
         return iterable(iterator(enumerator));
     }
 
@@ -159,10 +155,6 @@ public class Containers {
                 return it.hasNext() ? Option.some(it.next()) : Option.<T>none();
             }
         };
-    }
-
-    public static <E> IteratorF<E> decorate(Iterator<E> it) {
-        return new DecoratedIteratorF<E>(it);
     }
 
     public static <E> Iterable<E> flatten(final Iterable<? extends Iterable<E>> iterables) {

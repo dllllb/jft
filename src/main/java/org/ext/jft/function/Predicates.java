@@ -15,9 +15,9 @@ public class Predicates {
         };
     }
 
-    public static Predicate<Object> equalsP(final Object standart) {
-        return new Predicate<Object>() {
-            public boolean apply(Object val) {
+    public static <T> Predicate<T> equalsP(final T standart) {
+        return new Predicate<T>() {
+            public boolean apply(T val) {
                 return val.equals(standart);
             }
         };

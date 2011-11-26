@@ -19,16 +19,16 @@ public class PredicatesTest {
 
     @Test
     public void testAnyPred() {
-        @SuppressWarnings("unchecked")
-        Predicate<Object> test = any(equalsP("a"), equalsP("b"));
+        @SuppressWarnings("unchecked") //TODO: use builder for checked cast
+        Predicate<String> test = any(equalsP("a"), equalsP("b"));
         assertTrue(test.apply("a"));
         assertFalse(test.apply("as"));
     }
 
     @Test
     public void testAllPred() {
-        @SuppressWarnings("unchecked")
-        Predicate<Object> test = all(equalsP("a").not(), equalsP("b").not());
+        @SuppressWarnings("unchecked") //TODO: use builder for checked cast
+        Predicate<String> test = all(equalsP("a").not(), equalsP("b").not());
         assertTrue(test.apply("as"));
         assertFalse(test.apply("a"));
     }

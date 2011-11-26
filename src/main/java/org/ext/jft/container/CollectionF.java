@@ -45,6 +45,4 @@ public interface CollectionF<E> extends Collection<E>, Transformable<E> {
      * @param operation - operation to perform
      */
     void forEach(Operation<? super E> operation);
-
-    IteratorF<E> iterator();
 }
