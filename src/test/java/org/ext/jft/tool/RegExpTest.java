@@ -7,10 +7,10 @@ import org.junit.Test;
  * @author Dmitri Babaev
  */
 public class RegExpTest {
-	
-	@Test
-	public void testFind() {
-		String res = RegExp.find("abc.", "---abcf---").getOrThrow("error");
-		Assert.assertEquals("abcf", res);
-	}
+
+    @Test
+    public void testFind() {
+        String res = RegExp.find("abc.", "---abcf---").getOrThrow("error");
+        Assert.assertEquals("abcf", res);
+    }
 }

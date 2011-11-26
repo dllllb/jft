@@ -10,116 +10,116 @@ import org.ext.jft.container.IteratorF;
 import org.ext.jft.container.ListF;
 
 public class DecoratedListF<E> extends AbstractListF<E> {
-	private List<E> inner;
-	
-	public DecoratedListF(List<E> list) {
-		this.inner = list;
-	}
+    private List<E> inner;
 
-	public void add(int index, E element) {
-		inner.add(index, element);
-	}
+    public DecoratedListF(List<E> list) {
+        this.inner = list;
+    }
 
-	public boolean add(E e) {
-		return inner.add(e);
-	}
+    public void add(int index, E element) {
+        inner.add(index, element);
+    }
 
-	public boolean addAll(Collection<? extends E> c) {
-		return inner.addAll(c);
-	}
+    public boolean add(E e) {
+        return inner.add(e);
+    }
 
-	public boolean addAll(int index, Collection<? extends E> c) {
-		return inner.addAll(index, c);
-	}
+    public boolean addAll(Collection<? extends E> c) {
+        return inner.addAll(c);
+    }
 
-	public void clear() {
-		inner.clear();
-	}
+    public boolean addAll(int index, Collection<? extends E> c) {
+        return inner.addAll(index, c);
+    }
 
-	public boolean contains(Object o) {
-		return inner.contains(o);
-	}
+    public void clear() {
+        inner.clear();
+    }
 
-	public boolean containsAll(Collection<?> c) {
-		return inner.containsAll(c);
-	}
+    public boolean contains(Object o) {
+        return inner.contains(o);
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		return inner.equals(o);
-	}
+    public boolean containsAll(Collection<?> c) {
+        return inner.containsAll(c);
+    }
 
-	public E get(int index) {
-		return inner.get(index);
-	}
+    @Override
+    public boolean equals(Object o) {
+        return inner.equals(o);
+    }
 
-	@Override
-	public int hashCode() {
-		return inner.hashCode();
-	}
+    public E get(int index) {
+        return inner.get(index);
+    }
 
-	public int indexOf(Object o) {
-		return inner.indexOf(o);
-	}
+    @Override
+    public int hashCode() {
+        return inner.hashCode();
+    }
 
-	public boolean isEmpty() {
-		return inner.isEmpty();
-	}
+    public int indexOf(Object o) {
+        return inner.indexOf(o);
+    }
 
-	public IteratorF<E> iterator() {
-		return decorate(inner.iterator());
-	}
+    public boolean isEmpty() {
+        return inner.isEmpty();
+    }
 
-	public int lastIndexOf(Object o) {
-		return inner.lastIndexOf(o);
-	}
+    public IteratorF<E> iterator() {
+        return decorate(inner.iterator());
+    }
 
-	public ListIterator<E> listIterator() {
-		return inner.listIterator();
-	}
+    public int lastIndexOf(Object o) {
+        return inner.lastIndexOf(o);
+    }
 
-	public ListIterator<E> listIterator(int index) {
-		return inner.listIterator(index);
-	}
+    public ListIterator<E> listIterator() {
+        return inner.listIterator();
+    }
 
-	public E remove(int index) {
-		return inner.remove(index);
-	}
+    public ListIterator<E> listIterator(int index) {
+        return inner.listIterator(index);
+    }
 
-	public boolean remove(Object o) {
-		return inner.remove(o);
-	}
+    public E remove(int index) {
+        return inner.remove(index);
+    }
 
-	public boolean removeAll(Collection<?> c) {
-		return inner.removeAll(c);
-	}
+    public boolean remove(Object o) {
+        return inner.remove(o);
+    }
 
-	public boolean retainAll(Collection<?> c) {
-		return inner.retainAll(c);
-	}
+    public boolean removeAll(Collection<?> c) {
+        return inner.removeAll(c);
+    }
 
-	public E set(int index, E element) {
-		return inner.set(index, element);
-	}
+    public boolean retainAll(Collection<?> c) {
+        return inner.retainAll(c);
+    }
 
-	public int size() {
-		return inner.size();
-	}
+    public E set(int index, E element) {
+        return inner.set(index, element);
+    }
 
-	public ListF<E> subList(int fromIndex, int toIndex) {
-		return decorate(inner.subList(fromIndex, toIndex));
-	}
+    public int size() {
+        return inner.size();
+    }
 
-	public Object[] toArray() {
-		return inner.toArray();
-	}
+    public ListF<E> subList(int fromIndex, int toIndex) {
+        return decorate(inner.subList(fromIndex, toIndex));
+    }
 
-	public <T> T[] toArray(T[] a) {
-		return inner.toArray(a);
-	}
+    public Object[] toArray() {
+        return inner.toArray();
+    }
 
-	@Override
-	public String toString() {
-		return inner.toString();
-	}
+    public <T> T[] toArray(T[] a) {
+        return inner.toArray(a);
+    }
+
+    @Override
+    public String toString() {
+        return inner.toString();
+    }
 }

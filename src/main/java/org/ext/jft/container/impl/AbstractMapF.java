@@ -13,52 +13,52 @@ import org.ext.jft.function.Mapper;
  */
 public abstract class AbstractMapF<K, V> implements MapF<K, V> {
 
-	public Option<V> getOpt(K key) {
-		V res = get(key);
-		return res != null ? Option.some(res) : Option.<V>none();
-	}
+    public Option<V> getOpt(K key) {
+        V res = get(key);
+        return res != null ? Option.some(res) : Option.<V>none();
+    }
 
-	public V getOrElse(K key, V elseVal) {
-		return getOpt(key).getOrElse(elseVal);
-	}
+    public V getOrElse(K key, V elseVal) {
+        return getOpt(key).getOrElse(elseVal);
+    }
 
-	public V getOrElse(K key, Mapper<? super K, V> factory) {
-		return getOpt(key).getOrElse(factory.apply(key));
-	}
+    public V getOrElse(K key, Mapper<? super K, V> factory) {
+        return getOpt(key).getOrElse(factory.apply(key));
+    }
 
-	public V getOrElseUpdate(K key, V elseVal) {
-		V res = get(key);
-		if (res != null)
-			return res;
+    public V getOrElseUpdate(K key, V elseVal) {
+        V res = get(key);
+        if (res != null)
+            return res;
 
-		put(key, elseVal);
-		return elseVal;
-	}
+        put(key, elseVal);
+        return elseVal;
+    }
 
-	public V getOrElseUpdate(K key, Mapper<? super K, V> factory) {
-		V res = get(key);
-		if (res != null)
-			return res;
+    public V getOrElseUpdate(K key, Mapper<? super K, V> factory) {
+        V res = get(key);
+        if (res != null)
+            return res;
 
-		res = factory.apply(key);
-		put(key, res);
-		return res;
-	}
+        res = factory.apply(key);
+        put(key, res);
+        return res;
+    }
 
-	public <Ex extends Throwable> V getOrThrow(K key, Ex ex) throws Ex {
-		return getOpt(key).getOrThrow(ex);
-	}
+    public <Ex extends Throwable> V getOrThrow(K key, Ex ex) throws Ex {
+        return getOpt(key).getOrThrow(ex);
+    }
 
-	public V getOrThrow(K key, String message) {
-		return getOpt(key).getOrThrow(message);
-	}
+    public V getOrThrow(K key, String message) {
+        return getOpt(key).getOrThrow(message);
+    }
 
-	public <To> ListF<To> map(Combiner<? super K, ? super V, To> combiner) {
-		ListF<To> res = arrayList();
+    public <To> ListF<To> map(Combiner<? super K, ? super V, To> combiner) {
+        ListF<To> res = arrayList();
 
-		for (Entry<K, V> entry : entrySet())
-			res.add(combiner.apply(entry.getKey(), entry.getValue()));
+        for (Entry<K, V> entry : entrySet())
+            res.add(combiner.apply(entry.getKey(), entry.getValue()));
 
-		return res;
-	}
+        return res;
+    }
 }
