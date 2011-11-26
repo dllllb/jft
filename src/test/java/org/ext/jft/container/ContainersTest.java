@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.ext.jft.function.Mappers;
+import org.ext.jft.function.Predicates;
 import org.junit.Test;
 
 /**
@@ -59,23 +60,29 @@ public class ContainersTest {
     @Test
     public void testIterableIterator() {
         CollectionF<Integer> expected = arrayList(1, 2, 3);
-        ListF<Integer> actual = arrayList(Containers.iterable(expected.iterator()));
+        ListF<Integer> actual = Containers.iterable(expected.iterator()).toArrayList();
 
         assertElementsEquals(expected, actual);
     }
 
+    @Test
+    public void testTransformableIterator() {
+        CollectionF<Integer> initial = arrayList(1, 2, 3);
+        ListF<Integer> res = Containers.iterable(initial.iterator()).filter(Predicates.lessThanP(3)).toArrayList();
+        assertElementsEquals(arrayList(1, 2), res);
+    }
 
     @Test
     public void testIteratorEnumerator() {
         CollectionF<Integer> expected = arrayList(1, 2, 3);
-        ListF<Integer> actual = arrayList(Containers.iterable(Containers.enumerator(expected.iterator())));
+        ListF<Integer> actual = Containers.iterable(Containers.enumerator(expected.iterator())).toArrayList();
 
         assertElementsEquals(expected, actual);
     }
 
     @Test
     public void testFlatten() {
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked") //TODO: use builder for checked cast
         ListF<ListF<Integer>> lst = arrayList(arrayList(1, 2, 3), arrayList(4, 5));
         assertElementsEquals(arrayList(1, 2, 3, 4, 5), arrayList(Containers.flatten(lst)));
     }

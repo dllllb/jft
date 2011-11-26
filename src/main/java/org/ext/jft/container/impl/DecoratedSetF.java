@@ -3,9 +3,8 @@ package org.ext.jft.container.impl;
 import static org.ext.jft.container.Containers.decorate;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
-
-import org.ext.jft.container.IteratorF;
 
 /**
  * @author Dmitri Babaev
@@ -51,8 +50,8 @@ public class DecoratedSetF<E> extends AbstractSetF<E> {
         return inner.isEmpty();
     }
 
-    public IteratorF<E> iterator() {
-        return decorate(inner.iterator());
+    public Iterator<E> iterator() {
+        return inner.iterator();
     }
 
     public boolean remove(Object o) {

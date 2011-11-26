@@ -1,6 +1,7 @@
 package org.ext.jft.tool;
 
 import org.ext.jft.container.Containers;
+import org.ext.jft.container.Enumerators;
 import org.ext.jft.container.ListF;
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Combiners;
@@ -14,22 +15,24 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author Dmitri Babaev
  */
-public class GeneticTest {
+public class GenetixTest {
 
     @Test
     public void breedTest() {
-        Genetic.Breeder<Integer> breeder = new Genetic.AbstractBreeder<Integer>() {
+        Genetix.Breeder<Integer> breeder = new Genetix.AbstractBreeder<Integer>() {
             @Override
             protected Integer descend(Integer left, Integer right) {
                 return left + right;
             }
         };
 
-        Iterable<Integer> br = Genetic.breed(Containers.arrayList(1, 2, 3, 4, 5), breeder, new Random(1));
+        Iterable<Integer> br = Containers.iterable(Enumerators.limit(Genetix.generator(
+                Containers.arrayList(1, 2, 3, 4, 5), breeder, new Random(1)), 10));
         ListF<Integer> res = Containers.arrayList(br);
-        assertEquals(5, res.size());
+        assertEquals(10, res.size());
 
-        Integer sum = res.reduce(new Combiner<Integer, Integer, Integer>() {
+        Integer sum = res.reduce(
+                new Combiner<Integer, Integer, Integer>() {
                     @Override
                     public Integer apply(Integer left, Integer right) {
                         return left + right;
