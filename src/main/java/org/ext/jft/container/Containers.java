@@ -146,7 +146,7 @@ public class Containers {
         });
     }
 
-    public static <T> Transformable<T> iterable(Enumerator<T> enumerator) {
+    public static <T> Transformable<T> transformable(Enumerator<T> enumerator) {
         return transformable(iterator(enumerator));
     }
 

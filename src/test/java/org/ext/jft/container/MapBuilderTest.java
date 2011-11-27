@@ -5,7 +5,8 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.ext.jft.container.MapBuilder.entry;
+import static org.ext.jft.container.MapBuilder.hashMap;
+import static org.ext.jft.container.MapBuilder.treeMap;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 
 /**
@@ -18,14 +19,14 @@ public class MapBuilderTest {
     }};
 
     @Test
-    public void testAsHashMap() {
-        Map<Integer, String> map = entry(1, "a").and(2, "b").asHashMap();
+    public void testHashMap() {
+        Map<Integer, String> map = hashMap(1, "a").and(2, "b").get();
         assertElementsEquals(control.entrySet(), map.entrySet());
     }
 
     @Test
-    public void testAsTreeMap() {
-        Map<Integer, String> map = entry(1, "a").and(2, "b").asTreeMap();
+    public void testTreeMap() {
+        Map<Integer, String> map = treeMap(1, "a").and(2, "b").get();
         assertElementsEquals(control.entrySet(), map.entrySet());
     }
 }

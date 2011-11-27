@@ -1,15 +1,13 @@
 package org.ext.jft.function;
 
-import static org.ext.jft.function.Predicates.all;
-import static org.ext.jft.function.Predicates.any;
-import static org.ext.jft.function.Predicates.elementOfP;
-import static org.ext.jft.function.Predicates.equalsP;
+import static org.ext.jft.function.Predicates.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
 
+import com.sun.xml.internal.fastinfoset.util.CharArray;
 import org.junit.Test;
 
 /**
@@ -18,17 +16,15 @@ import org.junit.Test;
 public class PredicatesTest {
 
     @Test
-    public void testAnyPred() {
-        @SuppressWarnings("unchecked") //TODO: use builder for checked cast
-        Predicate<String> test = any(equalsP("a"), equalsP("b"));
+    public void testOrPred() {
+        Predicate<String> test = equalsP("a").or(equalsP("b"));
         assertTrue(test.apply("a"));
         assertFalse(test.apply("as"));
     }
 
     @Test
-    public void testAllPred() {
-        @SuppressWarnings("unchecked") //TODO: use builder for checked cast
-        Predicate<String> test = all(equalsP("a").not(), equalsP("b").not());
+    public void testAndPred() {
+        Predicate<String> test = equalsP("a").not().and(equalsP("b").not());
         assertTrue(test.apply("as"));
         assertFalse(test.apply("a"));
     }
@@ -45,5 +41,12 @@ public class PredicatesTest {
         Predicate<Collection<String>> test = Predicates.containsP("a");
         assertTrue(test.apply(Arrays.asList("a", "b")));
         assertFalse(test.apply(Arrays.asList("c", "d")));
+    }
+
+    @Test
+    public void testInstanceOfPred() {
+        Predicate<Object> test = instanceOfP(String.class);
+        assertTrue(test.apply("a"));
+        assertFalse(test.apply(1));
     }
 }
