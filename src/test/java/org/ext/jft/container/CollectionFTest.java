@@ -3,7 +3,7 @@ package org.ext.jft.container;
 import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.container.Containers.decorate;
 import static org.ext.jft.container.Pair.pair;
-import static org.ext.jft.container.Range.range;
+import static org.ext.jft.generator.Range.range;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertEquals;
 

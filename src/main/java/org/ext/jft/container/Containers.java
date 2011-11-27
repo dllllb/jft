@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.ext.jft.container.impl.*;
+import org.ext.jft.generator.Enumerator;
 
 /**
  * @author Dmitri Babaev
@@ -137,7 +138,7 @@ public class Containers {
         };
     }
 
-    public static <T> Transformable<T> iterable(final Iterator<T> it) {
+    public static <T> Transformable<T> transformable(final Iterator<T> it) {
         return new DecoratedTransformable<T>(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return it;
@@ -146,7 +147,7 @@ public class Containers {
     }
 
     public static <T> Transformable<T> iterable(Enumerator<T> enumerator) {
-        return iterable(iterator(enumerator));
+        return transformable(iterator(enumerator));
     }
 
     public static <T> Enumerator<T> enumerator(final Iterator<T> it) {

@@ -5,7 +5,7 @@ import static org.ext.jft.container.Containers.flatten;
 import static org.ext.jft.container.Containers.iterable;
 
 import org.ext.jft.container.Containers;
-import org.ext.jft.container.Enumerator;
+import org.ext.jft.generator.Enumerator;
 import org.ext.jft.container.ListF;
 import org.ext.jft.container.MapF;
 import org.ext.jft.container.Option;

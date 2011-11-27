@@ -1,4 +1,8 @@
-package org.ext.jft.container;
+package org.ext.jft.generator;
+
+import org.ext.jft.container.Containers;
+import org.ext.jft.container.Option;
+import org.ext.jft.generator.Enumerator;
 
 /**
  * This class is a factory class.

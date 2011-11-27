@@ -1,10 +1,8 @@
 package org.ext.jft.tool;
 
-import org.ext.jft.container.Enumerator;
+import org.ext.jft.generator.Enumerator;
 import org.ext.jft.container.Option;
-import org.ext.jft.function.Combiner;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 

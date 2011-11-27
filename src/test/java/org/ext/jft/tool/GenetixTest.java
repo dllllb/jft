@@ -1,7 +1,7 @@
 package org.ext.jft.tool;
 
 import org.ext.jft.container.Containers;
-import org.ext.jft.container.Enumerators;
+import org.ext.jft.generator.Enumerators;
 import org.ext.jft.container.ListF;
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Combiners;

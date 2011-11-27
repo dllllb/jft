@@ -1,7 +1,7 @@
-package org.ext.jft.container;
+package org.ext.jft.generator;
 
 import static org.ext.jft.container.Containers.arrayList;
-import static org.ext.jft.container.Range.range;
+import static org.ext.jft.generator.Range.range;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 
 import org.junit.Test;

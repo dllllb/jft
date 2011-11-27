@@ -1,4 +1,6 @@
-package org.ext.jft.container;
+package org.ext.jft.generator;
+
+import org.ext.jft.container.Option;
 
 /**
  * @author Dmitri Babaev
