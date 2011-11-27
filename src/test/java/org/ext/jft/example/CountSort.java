@@ -2,7 +2,7 @@ package org.ext.jft.example;
 
 import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.container.Containers.flatten;
-import static org.ext.jft.container.Containers.iterable;
+import static org.ext.jft.container.Containers.transformable;
 
 import org.ext.jft.container.Containers;
 import org.ext.jft.generator.Enumerator;
@@ -22,7 +22,7 @@ public class CountSort {
 
         ListF<E> res = arrayList(flatten(map.map(new Combiner<E, Integer, Iterable<E>>() {
             public Iterable<E> apply(final E val, final Integer sum) {
-                return iterable(new Enumerator<E>() {
+                return transformable(new Enumerator<E>() {
                     int count = sum;
 
                     public Option<E> getNext() {

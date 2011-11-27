@@ -3,6 +3,7 @@ package org.ext.jft.container;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.ext.jft.container.impl.AbstractTransformable;
 import org.ext.jft.function.Factory;
 
 /**
@@ -12,7 +13,7 @@ import org.ext.jft.function.Factory;
  * @author Dmitri Babaev
  * @see <a href="http://www.scala-lang.org/docu/files/api/scala/Option.html">Scala Option class documentation</a>
  */
-public abstract class Option<T> implements Iterable<T> {
+public abstract class Option<T> extends AbstractTransformable<T> {
     public abstract <E extends Throwable> T getOrThrow(E e) throws E;
 
     public abstract T getOrThrow(String message);

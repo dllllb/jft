@@ -69,15 +69,14 @@ public class ContainersTest {
     @Test
     public void testIteratorEnumerator() {
         CollectionF<Integer> expected = arrayList(1, 2, 3);
-        ListF<Integer> actual = Containers.iterable(Containers.enumerator(expected.iterator())).toArrayList();
+        ListF<Integer> actual = Containers.transformable(Containers.enumerator(expected.iterator())).toArrayList();
 
         assertElementsEquals(expected, actual);
     }
 
     @Test
     public void testFlatten() {
-        @SuppressWarnings("unchecked") //TODO: use builder for checked cast
-        ListF<ListF<Integer>> lst = arrayList(arrayList(1, 2, 3), arrayList(4, 5));
+        ListF<ListF<Integer>> lst = ListBuilder.arrayList(arrayList(1, 2, 3)).and(arrayList(4, 5)).get();
         assertElementsEquals(arrayList(1, 2, 3, 4, 5), arrayList(Containers.flatten(lst)));
     }
 }

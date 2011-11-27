@@ -25,7 +25,9 @@ public class Enumerators {
             int count = 0;
             @Override
             public Option<T> getNext() {
-                return count >= max ? Option.<T>none() : enumerator.getNext();
+                Option<T> res = count >= max ? Option.<T>none() : enumerator.getNext();
+                count++;
+                return res;
             }
         };
     }

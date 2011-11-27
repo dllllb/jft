@@ -26,7 +26,7 @@ public class GenetixTest {
             }
         };
 
-        Iterable<Integer> br = Containers.iterable(Enumerators.limit(Genetix.generator(
+        Iterable<Integer> br = Containers.transformable(Enumerators.limit(Genetix.generator(
                 Containers.arrayList(1, 2, 3, 4, 5), breeder, new Random(1)), 10));
         ListF<Integer> res = Containers.arrayList(br);
         assertEquals(10, res.size());
@@ -40,7 +40,7 @@ public class GenetixTest {
                 }, 0);
 
         assertTrue(sum >= 20);
-        assertTrue(sum <= 32);
+        assertTrue(sum <= 100);
 
         Integer min = res.reduce(Combiners.<Integer>min(), Integer.MAX_VALUE);
         Integer max = res.reduce(Combiners.<Integer>max(), Integer.MIN_VALUE);

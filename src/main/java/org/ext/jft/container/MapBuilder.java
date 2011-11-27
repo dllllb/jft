@@ -1,28 +1,33 @@
 package org.ext.jft.container;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Dmitri Babaev
  */
 public class MapBuilder<K, V> {
-    private MapF<K, V> entries = Containers.hashMap();
+    private MapF<K, V> res;
 
-    public static <K, V> MapBuilder<K, V> entry(K key, V value) {
-        return new MapBuilder<K, V>().and(key, value);
-    }
+    private MapBuilder() {}
 
-    MapBuilder<K, V> and(K key, V value) {
-        entries.put(key, value);
+    public MapBuilder<K, V> and(K key, V value) {
+        res.put(key, value);
         return this;
     }
-
-    MapF<K, V> asHashMap() {
-        return Containers.hashMap(entries);
+    
+    public MapF<K, V> get() {
+        return res;
     }
 
-    MapF<K, V> asTreeMap() {
-        return Containers.treeMap(entries);
+    public static <K,V> MapBuilder<K, V> hashMap(K key, V value) {
+        MapBuilder<K,V> builder = new MapBuilder<K, V>();
+        builder.res = Containers.hashMap();
+        builder.and(key, value);
+        return builder;
+    }
+
+    public static <K,V> MapBuilder<K, V> treeMap(K key, V value) {
+        MapBuilder<K,V> builder = new MapBuilder<K, V>();
+        builder.res = Containers.treeMap();
+        builder.and(key, value);
+        return builder;
     }
 }

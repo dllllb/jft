@@ -2,7 +2,6 @@ package org.ext.jft.generator;
 
 import org.ext.jft.container.Containers;
 import org.ext.jft.container.Option;
-import org.ext.jft.generator.Enumerator;
 
 /**
  * This class is a factory class.
@@ -20,7 +19,7 @@ public class Range {
     }
 
     public static Iterable<Integer> range(int from, int to, int step) {
-        return Containers.iterable(generator(from, to, step));
+        return Containers.transformable(generator(from, to, step));
     }
 
     public static IntegerEnumerator generator(int from, int to, int step) {
