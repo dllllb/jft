@@ -7,15 +7,9 @@ import static org.ext.jft.container.Containers.hashMap;
 import static org.ext.jft.container.Containers.hashSet;
 import static org.ext.jft.container.Containers.linkedList;
 import static org.ext.jft.container.Containers.treeMap;
-import static org.ext.jft.container.Pair.pair;
 import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertArrayEquals;
-import static org.ext.jft.container.MapBuilder.entry;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.ext.jft.function.Mappers;
 import org.ext.jft.function.Predicates;
 import org.junit.Test;
 
@@ -60,7 +54,7 @@ public class ContainersTest {
     @Test
     public void testIterableIterator() {
         CollectionF<Integer> expected = arrayList(1, 2, 3);
-        ListF<Integer> actual = Containers.iterable(expected.iterator()).toArrayList();
+        ListF<Integer> actual = Containers.transformable(expected.iterator()).toArrayList();
 
         assertElementsEquals(expected, actual);
     }
@@ -68,7 +62,7 @@ public class ContainersTest {
     @Test
     public void testTransformableIterator() {
         CollectionF<Integer> initial = arrayList(1, 2, 3);
-        ListF<Integer> res = Containers.iterable(initial.iterator()).filter(Predicates.lessThanP(3)).toArrayList();
+        ListF<Integer> res = Containers.transformable(initial.iterator()).filter(Predicates.lessThanP(3)).toArrayList();
         assertElementsEquals(arrayList(1, 2), res);
     }
 

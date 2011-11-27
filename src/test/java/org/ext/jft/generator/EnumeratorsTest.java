@@ -1,6 +1,9 @@
-package org.ext.jft.container;
+package org.ext.jft.generator;
 
+import org.ext.jft.container.Containers;
 import org.ext.jft.function.Predicates;
+import org.ext.jft.generator.Enumerators;
+import org.ext.jft.generator.Range;
 import org.junit.Test;
 
 import java.util.List;

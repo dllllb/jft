@@ -1,6 +1,8 @@
-package org.ext.jft.container;
+package org.ext.jft.generator;
 
+import org.ext.jft.container.Option;
 import org.ext.jft.function.Predicate;
+import org.ext.jft.generator.Enumerator;
 
 public class Enumerators {
     public static <T> Enumerator<T> until(final Enumerator<T> enumerator, final Predicate<T> untilTruePred) {
