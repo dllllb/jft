@@ -7,19 +7,19 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.ext.jft.container.Containers.arrayList;
-import static org.ext.jft.test.Asserts.assertElementsEquals;
+import static org.junit.Assert.assertEquals;
 
 public class EnumeratorsTest {
 
     @Test public void testLimit() {
         List<Integer> res = Containers.transformable(
                 Enumerators.limit(Range.generator(0, 10, 1), 4)).toArrayList();
-        assertElementsEquals(arrayList(0, 1, 2, 3), res);
+        assertEquals(arrayList(0, 1, 2, 3), res);
     }
 
     @Test public void testUntil() {
         List<Integer> res = Containers.transformable(
                 Enumerators.until(Range.generator(0, 10, 1), Predicates.moreThanP(3))).toArrayList();
-        assertElementsEquals(arrayList(0, 1, 2, 3), res);
+        assertEquals(arrayList(0, 1, 2, 3), res);
     }
 }
