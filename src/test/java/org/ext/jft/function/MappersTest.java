@@ -1,7 +1,6 @@
 package org.ext.jft.function;
 
 import static org.ext.jft.container.Containers.arrayList;
-import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -17,14 +16,14 @@ public class MappersTest {
                 .filter(ReflectionMapper.<String, Integer>newInstance("length")
                         .andThen(Predicates.moreThanP(4))).toArrayList();
 
-        assertElementsEquals(test, res);
+        assertEquals(test, res);
     }
 
     @Test
     public void testCastMapper() {
         ListF<Integer> list = arrayList(1, 2, 3);
         ListF<Number> nList = list.map(Mappers.<Number>castMapper()).toArrayList();
-        assertElementsEquals(list, nList);
+        assertEquals(list, nList);
     }
 
     @Test(expected = ClassCastException.class)

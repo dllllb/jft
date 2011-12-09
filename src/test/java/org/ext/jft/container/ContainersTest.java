@@ -7,11 +7,13 @@ import static org.ext.jft.container.Containers.hashMap;
 import static org.ext.jft.container.Containers.hashSet;
 import static org.ext.jft.container.Containers.linkedList;
 import static org.ext.jft.container.Containers.treeMap;
-import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.ext.jft.function.Predicates;
 import org.junit.Test;
+
+import java.util.Collections;
 
 /**
  * @author Dmitri Babaev
@@ -25,30 +27,30 @@ public class ContainersTest {
 
     @Test
     public void testAsList() {
-        assertElementsEquals(arrayList(1, 2, 3), asList(1, 2, 3));
-        assertElementsEquals(arrayList(1, 2, 3), Containers.asList(array(1, 2, 3)));
+        assertEquals(arrayList(1, 2, 3), asList(1, 2, 3));
+        assertEquals(arrayList(1, 2, 3), Containers.asList(array(1, 2, 3)));
     }
 
     @Test
     public void testLinkedList() {
-        assertElementsEquals(arrayList(1, 2, 3), linkedList(1, 2, 3));
-        assertElementsEquals(arrayList(1, 2, 3), linkedList((Iterable<Integer>) arrayList(1, 2, 3)));
+        assertEquals(arrayList(1, 2, 3), linkedList(1, 2, 3));
+        assertEquals(arrayList(1, 2, 3), linkedList((Iterable<Integer>) arrayList(1, 2, 3)));
     }
 
     @Test
     public void testHashMap() {
-        assertElementsEquals(arrayList(), hashMap().values());
+        assertEquals(Collections.emptyList(), hashMap().values().toArrayList());
     }
 
     @Test
     public void testHashSet() {
-        assertElementsEquals(arrayList(1, 2, 3), hashSet(1, 2, 3));
-        assertElementsEquals(arrayList(1, 2, 3), hashSet((Iterable<Integer>) arrayList(1, 2, 3)));
+        assertEquals(arrayList(1, 2, 3).toHashSet(), hashSet(1, 2, 3));
+        assertEquals(arrayList(1, 2, 3).toHashSet(), hashSet((Iterable<Integer>) arrayList(1, 2, 3)));
     }
 
     @Test
     public void testTreeMap() {
-        assertElementsEquals(arrayList(), treeMap().values());
+        assertEquals(Collections.emptyList(), treeMap().values().toArrayList());
     }
 
     @Test
@@ -56,14 +58,14 @@ public class ContainersTest {
         CollectionF<Integer> expected = arrayList(1, 2, 3);
         ListF<Integer> actual = Containers.transformable(expected.iterator()).toArrayList();
 
-        assertElementsEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void testTransformableIterator() {
         CollectionF<Integer> initial = arrayList(1, 2, 3);
         ListF<Integer> res = Containers.transformable(initial.iterator()).filter(Predicates.lessThanP(3)).toArrayList();
-        assertElementsEquals(arrayList(1, 2), res);
+        assertEquals(arrayList(1, 2), res);
     }
 
     @Test
@@ -71,12 +73,12 @@ public class ContainersTest {
         CollectionF<Integer> expected = arrayList(1, 2, 3);
         ListF<Integer> actual = Containers.transformable(Containers.enumerator(expected.iterator())).toArrayList();
 
-        assertElementsEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void testFlatten() {
         ListF<ListF<Integer>> lst = ListBuilder.arrayList(arrayList(1, 2, 3)).and(arrayList(4, 5)).get();
-        assertElementsEquals(arrayList(1, 2, 3, 4, 5), arrayList(Containers.flatten(lst)));
+        assertEquals(arrayList(1, 2, 3, 4, 5), arrayList(Containers.flatten(lst)));
     }
 }

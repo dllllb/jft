@@ -4,7 +4,6 @@ import static org.ext.jft.container.Containers.arrayList;
 import static org.ext.jft.container.Containers.decorate;
 import static org.ext.jft.container.Pair.pair;
 import static org.ext.jft.generator.Range.range;
-import static org.ext.jft.test.Asserts.assertElementsEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -24,8 +23,8 @@ public class CollectionFTest {
 
     @Test
     public void testToMapMappingToKey() {
-        @SuppressWarnings("unchecked")
-        ListF<Pair<Integer, String>> list = arrayList(pair(1, "a"), pair(2, "b"));
+        ListF<Pair<Integer, String>> list = ListBuilder.arrayList(pair(1, "a"))
+                .and(pair(2, "b")).get();
 
         Map<Integer, Pair<Integer, String>> map = list.toMapMappingToKey(Pair.<Integer, String>getFirstM());
         assertEquals(pair(1, "a"), map.get(1));
@@ -56,7 +55,7 @@ public class CollectionFTest {
                 .map(Mappers.toStringM())
                 .toArrayList();
 
-        assertElementsEquals(arrayList("1", "2"), res);
+        assertEquals(arrayList("1", "2"), res);
     }
 
     @Test
@@ -65,7 +64,7 @@ public class CollectionFTest {
                 .filter(Predicates.notNullP())
                 .toArrayList();
 
-        assertElementsEquals(arrayList(1, 2), res);
+        assertEquals(arrayList(1, 2), res);
     }
 
     @Test

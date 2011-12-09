@@ -7,7 +7,7 @@ import java.util.Map;
 
 import static org.ext.jft.container.MapBuilder.hashMap;
 import static org.ext.jft.container.MapBuilder.treeMap;
-import static org.ext.jft.test.Asserts.assertElementsEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Dmitri Babaev
@@ -21,12 +21,12 @@ public class MapBuilderTest {
     @Test
     public void testHashMap() {
         Map<Integer, String> map = hashMap(1, "a").and(2, "b").get();
-        assertElementsEquals(control.entrySet(), map.entrySet());
+        assertEquals(control.entrySet(), map.entrySet());
     }
 
     @Test
     public void testTreeMap() {
         Map<Integer, String> map = treeMap(1, "a").and(2, "b").get();
-        assertElementsEquals(control.entrySet(), map.entrySet());
+        assertEquals(control.entrySet(), map.entrySet());
     }
 }
