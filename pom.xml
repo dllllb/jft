@@ -10,6 +10,7 @@
     <developers>
         <developer>
             <name>Dmitri Babaev</name>
+            <email>dmitri.babaev@gmail.com</email>
         </developer>
     </developers>
     <build>
@@ -43,7 +44,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.5</version>
-            <optional>true</optional>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
