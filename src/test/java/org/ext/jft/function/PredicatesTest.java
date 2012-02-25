@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
 import org.junit.Test;
 
 /**
