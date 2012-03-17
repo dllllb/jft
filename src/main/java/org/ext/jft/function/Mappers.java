@@ -3,6 +3,8 @@ package org.ext.jft.function;
 import java.util.List;
 
 import org.ext.jft.container.Containers;
+import org.ext.jft.container.ListF;
+import org.ext.jft.container.Pair;
 import org.ext.jft.tool.AnyType;
 
 /**
@@ -36,10 +38,10 @@ public class Mappers {
         };
     }
 
-    public static <From, E> Mapper<From, List<E>> newArrayListM() {
-        return new Mapper<From, List<E>>() {
-            public List<E> apply(From from) {
-                return Containers.arrayList();
+    public static <E> Mapper<Iterable<E>, ListF<E>> arrayListM() {
+        return new Mapper<Iterable<E>, ListF<E>>() {
+            public ListF<E> apply(Iterable<E> from) {
+                return Containers.arrayList(from);
             }
         };
     }
@@ -56,6 +58,14 @@ public class Mappers {
         return new Mapper<Object, To>() {
             public To apply(Object from) {
                 return AnyType.<To>cast(from);
+            }
+        };
+    }
+
+    public static <T> Mapper<T, Pair<T, T>> duplicatingSeparator() {
+        return new Mapper<T, Pair<T, T>>() {
+            public Pair<T, T> apply(T from) {
+                return Pair.pair(from, from);
             }
         };
     }
