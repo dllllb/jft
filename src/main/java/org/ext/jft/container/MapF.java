@@ -25,6 +25,10 @@ public interface MapF<K, V> extends Map<K, V> {
     V getOrElseUpdate(K key, Mapper<? super K, V> factory);
 
     <To> ListF<To> map(Combiner<? super K, ? super V, To> combiner);
+    
+    <To> MapF<K, To> project(Mapper<V, To> mapper);
+
+    <To> MapF<To, CollectionF<V>> groupBy(Mapper<V, To> mapper);
 
     SetF<K> keySet();
 

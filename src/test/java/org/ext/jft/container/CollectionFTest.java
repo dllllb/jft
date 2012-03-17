@@ -79,4 +79,19 @@ public class CollectionFTest {
         assertEquals(Integer.valueOf(4), map.get(1));
         assertEquals(Integer.valueOf(6), map.get(3));
     }
+
+    @Test
+    public void testGroupBy() {
+        CollectionF<Pair<String, Integer>> col = ListBuilder
+                .arrayList(Pair.pair("a", 1))
+                .and(Pair.pair("b", 1))
+                .and(Pair.pair("c", 2))
+                .get();
+        
+        MapF<Integer, CollectionF<Pair<String, Integer>>> res =
+                col.groupBy(Pair.<String, Integer>getSecondM());
+
+        assertEquals(ListBuilder.arrayList(pair("a", 1)).and(pair("b", 1)).get(), res.get(1));
+        assertEquals(ListBuilder.arrayList(pair("c", 2)).get(), res.get(2));
+    }
 }

@@ -10,10 +10,13 @@ import static org.ext.jft.container.Containers.treeMap;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import org.ext.jft.function.Mappers;
 import org.ext.jft.function.Predicates;
+import org.ext.jft.generator.Range;
 import org.junit.Test;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Dmitri Babaev

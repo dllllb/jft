@@ -4,7 +4,9 @@ import static org.ext.jft.container.Containers.arrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import junit.framework.Assert;
 import org.ext.jft.container.ListF;
+import org.ext.jft.container.Pair;
 import org.junit.Test;
 
 public class MappersTest {
@@ -40,5 +42,15 @@ public class MappersTest {
         Integer res = Mappers.<Integer>selfMapper().apply(val);
         assertEquals(val, res);
         assertTrue(val == res);
+    }
+
+    @Test
+    public void testDuplicatingSeparator() {
+        Integer val = 1;
+        Pair<Integer, Integer> res = Mappers.<Integer>duplicatingSeparator().apply(val);
+        Assert.assertEquals(val, res.first());
+        Assert.assertEquals(res.first(), res.second());
+        Assert.assertTrue(val == res.first());
+        Assert.assertTrue(res.first() == res.second());
     }
 }

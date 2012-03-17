@@ -1,12 +1,13 @@
 package org.ext.jft.container.impl;
 
 import static org.ext.jft.container.Containers.arrayList;
+import static org.ext.jft.container.Containers.hashMap;
 
-import org.ext.jft.container.ListF;
-import org.ext.jft.container.MapF;
-import org.ext.jft.container.Option;
+import org.ext.jft.container.*;
 import org.ext.jft.function.Combiner;
 import org.ext.jft.function.Mapper;
+
+import java.util.HashMap;
 
 /**
  * @author Dmitri Babaev
@@ -58,6 +59,32 @@ public abstract class AbstractMapF<K, V> implements MapF<K, V> {
 
         for (Entry<K, V> entry : entrySet())
             res.add(combiner.apply(entry.getKey(), entry.getValue()));
+
+        return res;
+    }
+    
+    protected <K, V> MapF<K, V> newInstance() {
+        return hashMap();
+    }
+
+    @Override
+    public <To> MapF<K, To> project(Mapper<V, To> mapper) {
+        MapF<K, To> res = newInstance();
+        
+        for (Entry<K, V> entry : entrySet())
+            res.put(entry.getKey(), mapper.apply(entry.getValue()));
+
+        return res;
+    }
+
+    @Override
+    public <To> MapF<To, CollectionF<V>> groupBy(Mapper<V, To> mapper) {
+        MapF<To, CollectionF<V>> res = newInstance();
+                
+        for (Entry<K, V> entry : entrySet()) {
+            To key = mapper.apply(entry.getValue());
+            res.getOrElseUpdate(key, Containers.<V>arrayList()).add(entry.getValue());
+        }
 
         return res;
     }
